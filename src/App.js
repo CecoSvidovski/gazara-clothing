@@ -1,7 +1,9 @@
+import Directory from './components/Directory';
+
 const App = () => {
   return (
-    <div>Gazaaaraaaaaa</div>
+    <Directory />
   );
-}
+};
 
 export default App;
