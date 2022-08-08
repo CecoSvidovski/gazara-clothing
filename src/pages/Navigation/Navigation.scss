@@ -1,12 +1,14 @@
 .nav {
-  height: 118px;
+  height: 136px;
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-
+  margin: 15px 0;
+  overflow: hidden;
+  padding: 0 min(2.5vw, 48px);
   .logo-container {
-    padding: 10px 15px;
+    padding: 0 7.5px;
 
     .logo {
       font-family: 'GFS Didot', serif;
@@ -15,7 +17,9 @@
       text-decoration: none;
       letter-spacing: -40px;
       margin: 0;
-      color: #0A0A0A;
+      // color: #f3f3f3;
+      // background-color: #0a0a0a;
+      padding-right: 44px;
     }
   }
 
@@ -23,12 +27,18 @@
     width: 50%;
     display: flex;
     justify-content: flex-end;
+    padding: 0 7.5px;
 
     .nav-link {
       font-family: 'Inter', sans-serif;
       padding: 10px 15px;
       cursor: pointer;
       text-transform: uppercase;
+
+      &:hover {
+        background-color: #0a0a0a;
+        color: #f3f3f3;
+      }
     }
   }
 }
