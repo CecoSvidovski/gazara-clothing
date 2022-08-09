@@ -1,8 +1,11 @@
 import { useState } from 'react';
 
 import { createAuthUser, createUserDocument } from '../../utils/firebase';
-import { kebabToCamelcase } from '../../utils/stringUtils';
+import { kebabToCamelCase } from '../../utils/stringUtils';
+
 import FormInput from '../FormInput';
+import Button from '../Button/Button';
+import './SignUpForm.scss'
 
 const SignUpForm = () => {
   const initialFormData = {
@@ -18,7 +21,7 @@ const SignUpForm = () => {
 
   const handleChange = (e) => {
     const { name: nameKebab, value } = e.target;
-    const name = kebabToCamelcase(nameKebab);
+    const name = kebabToCamelCase(nameKebab);
 
     setFormFields({ ...formFields, [name]: value });
   };
@@ -46,8 +49,9 @@ const SignUpForm = () => {
   };
 
   return (
-    <div>
-      <h1>Sign Up</h1>
+    <div className='sign-up-container'>
+      <h2>Don't have an account?</h2>
+      <span>Sign up with your email and password</span>
       <form onSubmit={handleSubmit}>
         <FormInput
           label='First Name'
@@ -94,7 +98,7 @@ const SignUpForm = () => {
           required
         />
 
-        <button type='submit'>Sign Up</button>
+        <Button type='submit'>Sign Up</Button>
       </form>
     </div>
   );

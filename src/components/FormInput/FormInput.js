@@ -1,8 +1,17 @@
-const FormInput = ({ label, name, ...props }) => {
+import './FormInput.scss';
+
+const FormInput = ({ name, label = null, ...props }) => {
   return (
-    <div>
-      <label htmlFor={name}>{label}</label>
-      <input name={name} {...props} />
+    <div className='form-group'>
+      <input className='form-input' name={name} {...props} />
+      {label && (
+        <label
+          htmlFor={name}
+          className={`${props.value.length ? 'shrink' : null} form-input-label`}
+        >
+          {label}
+        </label>
+      )}
     </div>
   );
 };
