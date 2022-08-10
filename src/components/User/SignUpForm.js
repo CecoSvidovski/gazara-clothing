@@ -5,17 +5,17 @@ import { kebabToCamelCase } from '../../utils/stringUtils';
 
 import FormInput from '../FormInput';
 import Button from '../Button/Button';
-import './SignUpForm.scss'
+import './SignUpForm.scss';
+
+const initialFormData = {
+  firstName: '',
+  lastName: '',
+  email: '',
+  password: '',
+  confirmPassword: '',
+};
 
 const SignUpForm = () => {
-  const initialFormData = {
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-  };
-
   const [formFields, setFormFields] = useState(initialFormData);
   const { firstName, lastName, email, password, confirmPassword } = formFields;
 
@@ -36,6 +36,7 @@ const SignUpForm = () => {
 
     try {
       const { user } = await createAuthUser(email, password);
+
       await createUserDocument(user, { firstName, lastName });
 
       setFormFields(initialFormData);
@@ -98,7 +99,7 @@ const SignUpForm = () => {
           required
         />
 
-        <Button type='submit'>Sign Up</Button>
+        <Button type='submit' style={{width: '100%'}}>Sign Up</Button>
       </form>
     </div>
   );

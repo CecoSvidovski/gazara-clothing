@@ -6,25 +6,25 @@
   line-height: 50px;
   padding: 0 35px 0 35px;
   font-size: 15px;
-  background-color: black;
-  color: #F3F3F3;
+  background-color: #0a0a0a;
+  color: #f3f3f3;
   text-transform: uppercase;
   font-family: 'Inter', sans-serif;
   font-weight: bold;
-  border: 1px solid black;
+  border: 1px solid #0a0a0a;
   cursor: pointer;
   display: flex;
   justify-content: center;
 
   &:hover {
-    background-color: white;
-    color: black;
-    border: 1px solid black;
+    background-color: #f3f3f3;
+    color: #0a0a0a;
+    border: 1px solid #0a0a0a;
   }
 
   &.google-btn {
     background-color: #2d75ea;
-    color: #F3F3F3;
+    color: #f3f3f3;
     border: 1px solid #2d75ea;
 
     &:hover {
@@ -41,7 +41,7 @@
 
     &:hover {
       background-color: #0a0a0a;
-      color: #F3F3F3;
+      color: #f3f3f3;
       border: 1px solid #F3F3F3;
     }
   }
