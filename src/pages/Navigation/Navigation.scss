@@ -6,7 +6,6 @@
   justify-content: space-between;
   align-items: center;
   margin: 15px 0;
-  overflow: hidden;
   padding: 0 min(2.5vw, 48px);
   .logo-container {
     padding: 0 7.5px;
@@ -18,20 +17,17 @@
       text-decoration: none;
       letter-spacing: -40px;
       margin: 0;
-      // color: #f3f3f3;
-      // background-color: #0a0a0a;
       padding-right: 44px;
     }
   }
 
   .nav-links-container {
-    width: 50%;
     display: flex;
     justify-content: flex-end;
+    align-items: center;
     padding: 0 7.5px;
 
     .nav-link {
-      font-family: 'Inter', sans-serif;
       padding: 10px 15px;
       cursor: pointer;
       text-transform: uppercase;

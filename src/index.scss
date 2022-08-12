@@ -10,12 +10,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: #f3f3f3;
   color: #0a0a0a;
-  max-width: 94vw;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  max-width: min(94vw, 1800px);
+  font-family: 'Inter', sans-serif;
 }
 
 a {
@@ -24,6 +20,11 @@ a {
 }
 
 div#root {
-  max-width: 1800px;
   margin: 0 auto;
+}
+
+input,
+textarea,
+select {
+  font-family: inherit;
 }

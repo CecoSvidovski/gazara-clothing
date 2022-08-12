@@ -1,11 +1,7 @@
 import { useState } from 'react';
 
-import {
-  signInUser,
-  signInWithGooglePopup,
-} from '../../utils/firebase';
+import { signInUser, signInWithGooglePopup } from '../../utils/firebase';
 import { kebabToCamelCase } from '../../utils/stringUtils';
-
 
 import FormInput from '../FormInput';
 import Button from '../Button/Button';
@@ -70,9 +66,9 @@ const SignInForm = () => {
           required
         />
         <div className='buttons-container'>
-          <Button type='submit'>Sign In</Button>
-          <Button type='button' buttonStyle='google' onClick={signInWithGoogle}>
-            Sign in with Google
+          <Button type='submit' style={{width: '33%'}}>Sign In</Button>
+          <Button type='button' buttonStyle='google' style={{width: '66%'}} onClick={signInWithGoogle}>
+            <i class='fa-brands fa-google google-icon'></i> Sign in with Google
           </Button>
         </div>
       </form>

@@ -9,7 +9,6 @@ $main-color: #0a0a0a;
 .form-group {
   position: relative;
   margin: 40px 0;
-  font-family: 'Inter', sans-serif;
 
   .form-input {
     background: none;
@@ -34,7 +33,7 @@ $main-color: #0a0a0a;
   }
 
   input[type='password'] {
-    letter-spacing: 0.4em;
+    letter-spacing: 0.2em;
   }
 
   .form-input-label {

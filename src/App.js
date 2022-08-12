@@ -3,8 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import Navigation from './pages/Navigation';
 import Home from './pages/Home';
 import Authentication from './pages/User/Authentication';
-
-const Shop = () => <h1>I am the shop page</h1>;
+import Shop from './pages/Shop';
 
 const App = () => {
   return (

@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "name": "Red Brim",
+    "imageUrl": "/img/products/men/hats/01/01.jpg",
+    "price": 25
+  },
+  {
+    "id": 2,
+    "name": "Brim with Black Strap",
+    "imageUrl": "/img/products/men/hats/02/01.jpg",
+    "price": 18
+  },
+  {
+    "id": 3,
+    "name": "Black Cap",
+    "imageUrl": "/img/products/men/hats/03/preview.jpg",
+    "price": 35
+  },
+  {
+    "id": 4,
+    "name": "Black Buckethat with Pattern",
+    "imageUrl": "/img/products/men/hats/04/01.jpg",
+    "price": 25
+  },
+  {
+    "id": 5,
+    "name": "Black Brim",
+    "imageUrl": "/img/products/men/hats/05/03.jpg",
+    "price": 18
+  },
+  {
+    "id": 6,
+    "name": "Black Beanie",
+    "imageUrl": "/img/products/women/hats/01/01.jpg",
+    "price": 14
+  },
+  {
+    "id": 7,
+    "name": "Red Beanie",
+    "imageUrl": "/img/products/men/hats/06/preview.jpg",
+    "price": 14
+  },
+  {
+    "id": 8,
+    "name": "Bordeaux Brim",
+    "imageUrl": "/img/products/women/hats/02/preview.jpg",
+    "price": 16
+  },
+  {
+    "id": 9,
+    "name": "Yellow Beanie",
+    "imageUrl": "/img/products/men/hats/07/preview.jpg",
+    "price": 18
+  }
+]
