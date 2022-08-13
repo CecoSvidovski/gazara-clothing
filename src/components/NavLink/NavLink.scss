@@ -1,0 +1,36 @@
+.nav-link-container {
+  width: 32px;
+  height: 32px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-left: 15px;
+
+  &:hover {
+    .dropdown-container {
+      display:block;
+    }
+  }
+
+  .dropdown-container {
+    display: none;
+    position: absolute;
+    padding-top: 15px;
+    top: 32px;
+    right: 0;
+    z-index: 5;
+    cursor: auto;
+
+    .dropdown {
+      width: 240px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 15px;
+      border: 1px solid #0a0a0a;
+      background-color: #f3f3f3;
+    }
+  }
+}

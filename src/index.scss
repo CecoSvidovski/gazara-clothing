@@ -12,6 +12,32 @@ body {
   color: #0a0a0a;
   max-width: min(94vw, 1800px);
   font-family: 'Inter', sans-serif;
+
+  *::-webkit-scrollbar {
+    width: 8px;
+    background-color: #f3f3f3;
+  }
+
+  *::-webkit-scrollbar-corner {
+    background-color: #f3f3f3;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: #c1c1c1;
+    min-height: 24px;
+
+    &:hover {
+      background-color: #a8a8a8;
+    }
+
+    &:active {
+      background-color: #787878;
+    }
+
+    &:focus {
+      background-color: #787878;
+    }
+  }
 }
 
 a {

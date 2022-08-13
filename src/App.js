@@ -2,7 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 
 import Navigation from './pages/Navigation';
 import Home from './pages/Home';
-import Authentication from './pages/User/Authentication';
+import Authentication from './pages/Auth';
 import Shop from './pages/Shop';
 
 const App = () => {

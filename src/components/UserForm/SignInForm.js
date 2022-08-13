@@ -67,8 +67,8 @@ const SignInForm = () => {
         />
         <div className='buttons-container'>
           <Button type='submit' style={{width: '33%'}}>Sign In</Button>
-          <Button type='button' buttonStyle='google' style={{width: '66%'}} onClick={signInWithGoogle}>
-            <i class='fa-brands fa-google google-icon'></i> Sign in with Google
+          <Button type='button' buttonType='google' style={{width: '66%'}} onClick={signInWithGoogle}>
+            <i className='fa-brands fa-google google-icon'></i> Sign in with Google
           </Button>
         </div>
       </form>

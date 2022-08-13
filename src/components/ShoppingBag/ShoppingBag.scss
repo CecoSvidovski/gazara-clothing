@@ -1,0 +1,26 @@
+.bag-icon {
+  width: 32px;
+  height: 32px;
+}
+
+.item-count {
+  position: absolute;
+  font-size: 14px;
+  letter-spacing: -0.8px;
+  bottom: 2px;
+}
+
+.empty-message {
+  font-size: 18px;
+  margin: 50px auto;
+}
+
+.items {
+  max-height: 252px;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  margin-bottom: 15px;
+}
+
+

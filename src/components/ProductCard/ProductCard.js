@@ -15,10 +15,10 @@ const ProductCard = ({ product }) => {
         <span className='product-price'>{price}</span>
       </div>
       <div className='button-container'>
-        <Button buttonStyle='smallInverted' style={{ width: '35%' }}>
+        <Button buttonType='smallInverted' style={{ width: '35%' }}>
           View
         </Button>
-        <Button buttonStyle='smallInverted' style={{ width: '60%' }}>
+        <Button buttonType='smallInverted' style={{ width: '60%' }}>
           Add to bag
         </Button>
       </div>

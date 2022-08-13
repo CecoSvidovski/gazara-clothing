@@ -1,6 +1,6 @@
 import './Button.scss';
 
-const BUTTON_STYLE_CLASSES = {
+const BUTTON_TYPE_CLASSES = {
   default: '',
   inverted: ' inverted-btn',
   google: ' google-btn',
@@ -8,10 +8,12 @@ const BUTTON_STYLE_CLASSES = {
   smallInverted: ' small-btn inverted-btn'
 };
 
-const Button = ({ children, buttonStyle = 'default', ...props }) => {
+const Button = ({ children, buttonType = 'default', ...props}) => {
+  const className = `button${BUTTON_TYPE_CLASSES[buttonType]}`;
+
   return (
     <button
-      className={`button${BUTTON_STYLE_CLASSES[buttonStyle]}`}
+      className={className}
       {...props}
     >
       {children}
