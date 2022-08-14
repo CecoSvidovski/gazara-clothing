@@ -9,21 +9,12 @@ import BagItem from '../BagItem/BagItem';
 import './BagNav.scss';
 
 const BagNav = () => {
-  const { bagItems, removeItemFromBag } = useBagContext();
+  const { bagItems, removeItemFromBag, bagItemsCount, bagTotalPrice } = useBagContext();
   const { favoriteItems, addItemToFavorites, removeItemFromFavorites } = useFavoritesContext();
-  
-  const [totalPrice, itemsCount] = bagItems.reduce(
-    (acc, item) => {
-      acc[0] += item.price * item.quantity;
-      acc[1] += item.quantity;
-      return acc;
-    },
-    [0, 0]
-  );
 
   const dropdownContent = (
     <>
-      {itemsCount ? (
+      {bagItemsCount ? (
         <>
           <div className='items'>
             {bagItems.map((item) => (
@@ -40,7 +31,7 @@ const BagNav = () => {
 
           <div className='total-price-container'>
             <span className='total-text'>Total:</span>
-            <span className='total-price'>${totalPrice}</span>
+            <span className='total-price'>${bagTotalPrice}</span>
           </div>
 
           <Button style={{ width: '100%' }}>Go to checkout</Button>
@@ -59,9 +50,9 @@ const BagNav = () => {
   return (
     <NavLink dropdownContent={dropdownContent} dropdownWidth='420px'>
       <ShoppingBagIcon className='bag-icon' />
-      {itemsCount ? (
+      {bagItemsCount ? (
         <span className='item-count'>
-          {itemsCount > 99 ? '99+' : itemsCount}
+          {bagItemsCount > 99 ? '99+' : bagItemsCount}
         </span>
       ) : (
         ''
