@@ -3,17 +3,17 @@
   viewBox="0 0 24 24" 
   width="24" 
   height="24" 
-  stroke="currentColor" 
-  stroke-width="1" 
   stroke-linecap="square" 
   stroke-linejoin="miter" 
   fill="none" 
   xmlns="http://www.w3.org/2000/svg"
 >
   <g>
-    <path d="M 12 22.21 L 10.331 20.719 C 4.399 15.443 0.483 11.963 0.483 7.693 C 0.483 4.214 3.271 
+    <path 
+      d="M 12 22.21 L 10.331 20.719 C 4.399 15.443 0.483 11.963 0.483 7.693 C 0.483 4.214 3.271 
       1.479 6.817 1.479 C 8.821 1.479 10.745 2.394 12 3.841 C 13.255 2.394 15.179 1.479 17.183 1.479 C 
       20.729 1.479 23.517 4.214 23.517 7.693 C 23.517 11.963 19.601 15.443 13.671 20.73 L 12 22.21 Z"
+      style="stroke: currentColor;stroke-width: 1;"
     />
   </g>
 </svg>

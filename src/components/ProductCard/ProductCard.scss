@@ -50,11 +50,13 @@
         opacity: 87%;
         width: 32px;
         height: 32px;
+        transition: color 0.4s cubic-bezier(0.25, 0.45, 0.45, 0.95);
 
         path#background-stroke {
           stroke: rgba(0, 0, 0, 0.25);
           stroke-width: 2px;
           filter: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.4));
+          transition: stroke 0.4s cubic-bezier(0.25, 0.45, 0.45, 0.95);
         }
       }
 
@@ -64,6 +66,11 @@
 
           path#background-stroke {
             stroke: rgba(239, 0, 12, 0.25);
+          }
+
+          path#main-stroke {
+            fill: rgb(239, 0, 12, 0);
+            transition: fill 0.4s cubic-bezier(0.25, 0.45, 0.45, 0.95);
           }
         }
       }

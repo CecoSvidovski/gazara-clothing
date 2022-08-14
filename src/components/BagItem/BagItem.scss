@@ -42,30 +42,39 @@
         padding: 3px 1px 0;
         display: flex;
         align-items: center;
-        color: #777f85;
+        color: rgb(119, 127, 133);
         font-size: 14px;
         cursor: pointer;
+        transition: filter 0.3s cubic-bezier(0.25, 0.45, 0.47, 0.95),
+          color 0.4s cubic-bezier(0.25, 0.45, 0.45, 0.95);
 
         .heart-icon {
           margin-right: 4px;
-          position:relative;
+          position: relative;
           color: currentColor;
           width: 14px;
           height: 14px;
           top: 0.5px;
+
+          path {
+            fill: rgba(239, 0, 12, 0);
+            transition: fill 0.4s cubic-bezier(0.25, 0.45, 0.45, 0.95);
+          }
         }
 
         &:hover {
-          color: #505457;
+          color: #0a0a0a;
+          filter: drop-shadow(0px 0.75px 0.35px rgba(0, 0, 0, 0.12));
         }
 
         &.active {
           color: #ef000c;
 
           .heart-icon {
+            color: #ef000c;
+
             path {
-              paint-order: fill;
-              fill: currentColor;
+              fill: #ef000c;
             }
           }
         }
@@ -93,9 +102,12 @@
   &:hover {
     .remove {
       display: inline-block;
+      transition: filter 0.3s cubic-bezier(0.25, 0.45, 0.47, 0.95),
+        color 0.4s cubic-bezier(0.25, 0.45, 0.45, 0.95);
 
       &:hover {
-        color: #505457;
+        color: #0a0a0a;
+        filter: drop-shadow(0px 0.75px 0.35px rgba(0, 0, 0, 0.12));
       }
     }
   }
