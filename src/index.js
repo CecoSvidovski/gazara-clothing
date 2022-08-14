@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
 
+import { BagProvider } from './contexts/BagContext';
 import { AuthProvider } from './contexts/AuthContext';
 import { ProductsProvider } from './contexts/ProductsContext';
 
@@ -16,7 +17,9 @@ root.render(
     <BrowserRouter>
       <AuthProvider>
         <ProductsProvider>
-          <App />
+          <BagProvider>
+            <App />
+          </BagProvider>
         </ProductsProvider>
       </AuthProvider>
     </BrowserRouter>

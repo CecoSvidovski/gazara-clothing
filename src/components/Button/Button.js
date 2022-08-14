@@ -5,17 +5,15 @@ const BUTTON_TYPE_CLASSES = {
   inverted: ' inverted-btn',
   google: ' google-btn',
   small: ' small-btn',
-  smallInverted: ' small-btn inverted-btn'
+  smallInverted: ' small-btn inverted-btn',
+  onlyText: ' only-text',
 };
 
-const Button = ({ children, buttonType = 'default', ...props}) => {
+const Button = ({ children, buttonType = 'default', ...props }) => {
   const className = `button${BUTTON_TYPE_CLASSES[buttonType]}`;
 
   return (
-    <button
-      className={className}
-      {...props}
-    >
+    <button className={className} {...props}>
       {children}
     </button>
   );

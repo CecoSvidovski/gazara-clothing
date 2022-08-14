@@ -6,7 +6,6 @@ import NavLink from '../NavLink';
 import './UserNavLink.scss';
 
 const UserNavLink = ({ user, signOut }) => {
-  console.log(user);
   const dropdownContent = user ? (
     <>
       <span>Hello, {user.displayName}</span>

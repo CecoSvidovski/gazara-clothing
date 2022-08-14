@@ -1,9 +1,17 @@
-import './ProductCard.scss';
+import { useBagContext } from '../../contexts/BagContext';
 
 import Button from '../Button/Button';
 
+import './ProductCard.scss';
+
 const ProductCard = ({ product }) => {
   const { name, price, imageUrl } = product;
+  const { addItemToBag } = useBagContext();
+  
+  const handleAddProduct = () => {
+    addItemToBag(product);
+    console.log('added');
+  };
 
   return (
     <div className='product-card-container'>
@@ -18,7 +26,7 @@ const ProductCard = ({ product }) => {
         <Button buttonType='smallInverted' style={{ width: '35%' }}>
           View
         </Button>
-        <Button buttonType='smallInverted' style={{ width: '60%' }}>
+        <Button buttonType='smallInverted' style={{ width: '60%' }} onClick={handleAddProduct}>
           Add to bag
         </Button>
       </div>
