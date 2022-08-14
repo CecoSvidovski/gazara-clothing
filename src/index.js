@@ -10,6 +10,7 @@ import { ProductsProvider } from './contexts/ProductsContext';
 import App from './App';
 
 import './index.scss';
+import { FavoritesProvider } from './contexts/FavoritesContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -17,9 +18,11 @@ root.render(
     <BrowserRouter>
       <AuthProvider>
         <ProductsProvider>
-          <BagProvider>
-            <App />
-          </BagProvider>
+          <FavoritesProvider>
+            <BagProvider>
+              <App />
+            </BagProvider>
+          </FavoritesProvider>
         </ProductsProvider>
       </AuthProvider>
     </BrowserRouter>

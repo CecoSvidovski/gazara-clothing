@@ -5,6 +5,7 @@ import { signOutUser } from '../../utils/firebase';
 
 import BagNav from '../../components/BagNav';
 import UserNav from '../../components/UserNav';
+import FavoritesNav from '../../components/FavoritesNav';
 
 import './Navigation.scss';
 
@@ -23,16 +24,8 @@ const Navigation = () => {
           <Link className='nav-link' to='/shop'>
             Shop
           </Link>
+          <FavoritesNav />
           <UserNav user={user} signOut={signOutUser} />
-          {/* {user ? (
-            <span className='nav-link' onClick={signOutUser}>
-              Sign Out
-            </span>
-          ) : (
-            <Link className='nav-link' to='/auth'>
-              Sign In
-            </Link>
-          )} */}
           <BagNav />
         </div>
       </div>

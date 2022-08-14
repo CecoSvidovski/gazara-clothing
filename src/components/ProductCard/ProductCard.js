@@ -1,16 +1,24 @@
 import { useBagContext } from '../../contexts/BagContext';
+import { useFavoritesContext } from '../../contexts/FavoritesContext';
 
 import Button from '../Button/Button';
+import { ReactComponent as HeartIcon } from './assets/heart.svg';
 
 import './ProductCard.scss';
 
 const ProductCard = ({ product }) => {
   const { name, price, imageUrl } = product;
   const { addItemToBag } = useBagContext();
+  const { favoriteItems, addItemToFavorites, removeItemFromFavorites } =
+    useFavoritesContext();
 
-  const handleAddProduct = () => {
-    addItemToBag(product);
-  };
+  const handleAddToBag = () => addItemToBag(product);
+  const handleAddToFavorites = () => addItemToFavorites(product);
+  const handleRemoveFromFavorites = () => removeItemFromFavorites(product);
+
+  const itemAlreadyInFavorites = favoriteItems.find(
+    (i) => i._id === product._id
+  );
 
   return (
     <div className='product-card-container'>
@@ -28,10 +36,27 @@ const ProductCard = ({ product }) => {
         <Button
           buttonType='smallInverted'
           style={{ width: '60%' }}
-          onClick={handleAddProduct}
+          onClick={handleAddToBag}
         >
           Add to bag
         </Button>
+      </div>
+      <div className='favorites-container'>
+        {itemAlreadyInFavorites ? (
+          <span
+            className='add-to-favorites active'
+            onClick={handleRemoveFromFavorites}
+          >
+            <HeartIcon className='heart-icon' />
+          </span>
+        ) : (
+          <span
+            className='add-to-favorites'
+            onClick={handleAddToFavorites}
+          >
+            <HeartIcon className='heart-icon' />
+          </span>
+        )}
       </div>
     </div>
   );

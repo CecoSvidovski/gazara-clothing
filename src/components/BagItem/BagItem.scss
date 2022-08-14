@@ -34,12 +34,12 @@
 
       .price {
         font-size: 14px;
-        padding: 2px 0;
+        padding: 2px 0.5px;
       }
 
       .favorite {
         width: fit-content;
-        padding: 3px 0;
+        padding: 3px 1px 0;
         display: flex;
         align-items: center;
         color: #777f85;
@@ -48,14 +48,26 @@
 
         .heart-icon {
           margin-right: 4px;
+          position:relative;
           color: currentColor;
-          width: 16px;
-          height: 16px;
-          top: 1px;
+          width: 14px;
+          height: 14px;
+          top: 0.5px;
         }
 
         &:hover {
-          color: #9c0000;
+          color: #505457;
+        }
+
+        &.active {
+          color: #ef000c;
+
+          .heart-icon {
+            path {
+              paint-order: fill;
+              fill: currentColor;
+            }
+          }
         }
       }
     }
@@ -81,6 +93,10 @@
   &:hover {
     .remove {
       display: inline-block;
+
+      &:hover {
+        color: #505457;
+      }
     }
   }
 }

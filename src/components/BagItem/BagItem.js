@@ -3,10 +3,20 @@ import { ReactComponent as XIcon } from './assets/x.svg';
 
 import './BagItem.scss';
 
-const BagItem = ({ item, removeItem }) => {
+const BagItem = ({
+  item,
+  removeItem,
+  favoriteItems,
+  addToFavorites,
+  removeFromFavorites,
+}) => {
   const { name, imageUrl, price, quantity } = item;
 
   const handleRemoveItem = () => removeItem(item);
+  const handleAddToFavorites = () => addToFavorites(item);
+  const handleRemoveFromFavorites = () => removeFromFavorites(item);
+
+  const itemAlreadyInFavorites = favoriteItems.find((i) => i._id === item._id);
 
   return (
     <div className='cart-item-container'>
@@ -17,10 +27,17 @@ const BagItem = ({ item, removeItem }) => {
           <span className='price'>
             {quantity} x ${price}
           </span>
-          <span className='favorite'>
-            <HeartIcon className='heart-icon' />
-            Add to favorites
-          </span>
+          {!itemAlreadyInFavorites ? (
+            <span className='favorite' onClick={handleAddToFavorites}>
+              <HeartIcon className='heart-icon' />
+              Add to favorites
+            </span>
+          ) : (
+            <span className='favorite active' onClick={handleRemoveFromFavorites}>
+              <HeartIcon className='heart-icon' />
+              Added to favorites
+            </span>
+          )}
         </div>
         <div className='total-price-container'>
           <span className='total-price'>${quantity * price}</span>

@@ -1,4 +1,5 @@
 import { useBagContext } from '../../contexts/BagContext';
+import { useFavoritesContext } from '../../contexts/FavoritesContext';
 
 import { ReactComponent as ShoppingBagIcon } from '../../assets/shopping-bag.svg';
 import NavLink from '../NavLink';
@@ -9,7 +10,8 @@ import './BagNav.scss';
 
 const BagNav = () => {
   const { bagItems, removeItemFromBag } = useBagContext();
-
+  const { favoriteItems, addItemToFavorites, removeItemFromFavorites } = useFavoritesContext();
+  
   const [totalPrice, itemsCount] = bagItems.reduce(
     (acc, item) => {
       acc[0] += item.price * item.quantity;
@@ -29,6 +31,9 @@ const BagNav = () => {
                 key={item._id}
                 item={item}
                 removeItem={removeItemFromBag}
+                favoriteItems={favoriteItems}
+                addToFavorites={addItemToFavorites}
+                removeFromFavorites={removeItemFromFavorites}
               />
             ))}
           </div>
@@ -54,7 +59,13 @@ const BagNav = () => {
   return (
     <NavLink dropdownContent={dropdownContent} dropdownWidth='420px'>
       <ShoppingBagIcon className='bag-icon' />
-      <span className='item-count'>{itemsCount > 99 ? '99+' : itemsCount}</span>
+      {itemsCount ? (
+        <span className='item-count'>
+          {itemsCount > 99 ? '99+' : itemsCount}
+        </span>
+      ) : (
+        ''
+      )}
     </NavLink>
   );
 };

@@ -2,18 +2,28 @@ import Dropdown from './Dropdown';
 
 import './NavLink.scss';
 
-const NavLinkDropdown = ({ children, dropdownContent, dropdownWidth, ...props }) => {
-
+const NavLinkDropdown = ({
+  children,
+  dropdownContent,
+  dropdownWidth,
+  className,
+  ...props
+}) => {
   return (
     <div
-      className='nav-link-container'
+      className={
+        className
+          ? `nav-link-container ${className}`
+          : 'nav-link-container'
+      }
       {...props}
     >
       {children}
-      {dropdownContent
-        ? <Dropdown width={dropdownWidth}>{dropdownContent}</Dropdown>
-        : ''
-      }
+      {dropdownContent ? (
+        <Dropdown width={dropdownWidth}>{dropdownContent}</Dropdown>
+      ) : (
+        ''
+      )}
     </div>
   );
 };
