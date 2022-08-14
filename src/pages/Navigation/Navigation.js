@@ -3,10 +3,10 @@ import { Outlet, Link } from 'react-router-dom';
 import { useAuthContext } from '../../contexts/AuthContext';
 import { signOutUser } from '../../utils/firebase';
 
-import ShoppingBag from '../../components/ShoppingBag';
+import BagNav from '../../components/BagNav';
+import UserNav from '../../components/UserNav';
 
 import './Navigation.scss';
-import UserNavLink from '../../components/UserNavLink';
 
 const Navigation = () => {
   const { user } = useAuthContext();
@@ -23,7 +23,7 @@ const Navigation = () => {
           <Link className='nav-link' to='/shop'>
             Shop
           </Link>
-          <UserNavLink user={user} signOut={signOutUser} />
+          <UserNav user={user} signOut={signOutUser} />
           {/* {user ? (
             <span className='nav-link' onClick={signOutUser}>
               Sign Out
@@ -33,7 +33,7 @@ const Navigation = () => {
               Sign In
             </Link>
           )} */}
-          <ShoppingBag />
+          <BagNav />
         </div>
       </div>
       <Outlet />

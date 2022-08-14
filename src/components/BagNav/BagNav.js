@@ -5,9 +5,9 @@ import NavLink from '../NavLink';
 import Button from '../Button/Button';
 import BagItem from '../BagItem/BagItem';
 
-import './ShoppingBag.scss';
+import './BagNav.scss';
 
-const ShoppingBag = () => {
+const BagNav = () => {
   const { bagItems, removeItemFromBag } = useBagContext();
 
   const [totalPrice, itemsCount] = bagItems.reduce(
@@ -59,4 +59,4 @@ const ShoppingBag = () => {
   );
 };
 
-export default ShoppingBag;
+export default BagNav;

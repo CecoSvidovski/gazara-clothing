@@ -3,9 +3,9 @@ import { ReactComponent as UserIcon } from '../../assets/user.svg';
 import Button from '../Button/Button';
 import NavLink from '../NavLink';
 
-import './UserNavLink.scss';
+import './UserNav.scss';
 
-const UserNavLink = ({ user, signOut }) => {
+const UserNav = ({ user, signOut }) => {
   const dropdownContent = user ? (
     <>
       <span>Hello, {user.displayName}</span>
@@ -28,4 +28,4 @@ const UserNavLink = ({ user, signOut }) => {
   );
 };
 
-export default UserNavLink;
+export default UserNav;

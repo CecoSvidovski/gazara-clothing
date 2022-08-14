@@ -23,7 +23,7 @@ const BagItem = ({ item, removeItem }) => {
           </span>
         </div>
         <div className='total-price-container'>
-          <h4 className='total-price'>${quantity * price}</h4>
+          <span className='total-price'>${quantity * price}</span>
         </div>
       </div>
       <div className='remove' onClick={handleRemoveItem}>

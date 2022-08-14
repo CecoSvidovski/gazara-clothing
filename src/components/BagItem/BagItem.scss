@@ -26,14 +26,20 @@
 
       .name {
         font-size: 16px;
+        padding: 2px 0;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
       }
 
+      .price {
+        font-size: 14px;
+        padding: 2px 0;
+      }
+
       .favorite {
         width: fit-content;
-        padding-top: 4px;
+        padding: 3px 0;
         display: flex;
         align-items: center;
         color: #777f85;
@@ -55,15 +61,18 @@
     }
 
     .total-price-container {
+      margin: 0 0 0 5px;
       .total-price {
         font-size: 16px;
+        font-weight: bold;
+        margin: 0;
       }
     }
   }
   .remove {
     display: none;
     position: absolute;
-    right: 5px;
+    right: 10px;
     top: 0px;
     color: #777f85;
     cursor: pointer;
