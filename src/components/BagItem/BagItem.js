@@ -3,8 +3,10 @@ import { ReactComponent as XIcon } from './assets/x.svg';
 
 import './BagItem.scss';
 
-const BagItem = ({ item }) => {
+const BagItem = ({ item, removeItem }) => {
   const { name, imageUrl, price, quantity } = item;
+
+  const handleRemoveItem = () => removeItem(item);
 
   return (
     <div className='cart-item-container'>
@@ -24,7 +26,7 @@ const BagItem = ({ item }) => {
           <h4 className='total-price'>${quantity * price}</h4>
         </div>
       </div>
-      <div className='remove'>
+      <div className='remove' onClick={handleRemoveItem}>
         <XIcon className='x-icon' />
       </div>
     </div>

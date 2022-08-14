@@ -6,7 +6,7 @@
 .item-count {
   position: absolute;
   font-size: 14px;
-  letter-spacing: -0.8px;
+  letter-spacing: -1px;
   bottom: 3px;
 }
 
@@ -23,4 +23,14 @@
   margin-bottom: 15px;
 }
 
+.total-price-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 5px 15px;
+  font-size: 18px;
+  font-weight: bold;
 
+  .total-text {
+    text-transform: uppercase;
+  }
+}

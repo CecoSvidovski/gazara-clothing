@@ -3,15 +3,13 @@ import { createContext, useState, useContext } from 'react';
 export const BagContext = createContext({
   bagItems: [],
   addItemToBag: () => {},
+  removeItemFromBag: () => {},
 });
 
 export const BagProvider = ({ children }) => {
   const [bagItems, setBagItems] = useState([]);
 
   const addItemToBag = (item, quantity = 1) => {
-    console.log('Item to add:');
-    console.log(item);
-
     const existingBagItem = bagItems.find(
       (bagItem) => bagItem._id === item._id
     );
@@ -29,8 +27,22 @@ export const BagProvider = ({ children }) => {
     }
   };
 
+  const removeItemFromBag = (item) => {
+    const existingBagItem = bagItems.find(
+      (bagItem) => bagItem._id === item._id
+    );
+
+    if (existingBagItem) {
+      const bagItemsUpdated = bagItems.filter(
+        (bagItem) => bagItem._id !== item._id
+      );
+
+      setBagItems(bagItemsUpdated);
+    }
+  };
+
   return (
-    <BagContext.Provider value={{ bagItems, addItemToBag }}>
+    <BagContext.Provider value={{ bagItems, addItemToBag, removeItemFromBag }}>
       {children}
     </BagContext.Provider>
   );

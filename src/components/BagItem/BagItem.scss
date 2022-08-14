@@ -53,13 +53,19 @@
         }
       }
     }
+
+    .total-price-container {
+      .total-price {
+        font-size: 16px;
+      }
+    }
   }
   .remove {
     display: none;
-    position:absolute;
+    position: absolute;
     right: 5px;
     top: 0px;
-    color:#777f85;
+    color: #777f85;
     cursor: pointer;
   }
 
