@@ -4,7 +4,7 @@ import { useFavoritesContext } from '../../contexts/FavoritesContext';
 import { ReactComponent as ShoppingBagIcon } from '../../assets/shopping-bag.svg';
 import NavLink from '../NavLink';
 import Button from '../Button/Button';
-import BagItem from '../BagItem/BagItem';
+import BagNavItem from '../BagNavItem/BagNavItem';
 
 import './BagNav.scss';
 
@@ -18,7 +18,7 @@ const BagNav = () => {
         <>
           <div className='items'>
             {bagItems.map((item) => (
-              <BagItem
+              <BagNavItem
                 key={item._id}
                 item={item}
                 removeItem={removeItemFromBag}

@@ -1,9 +1,9 @@
 import { ReactComponent as HeartIcon } from './assets/heart.svg';
 import { ReactComponent as XIcon } from './assets/x.svg';
 
-import './BagItem.scss';
+import './BagNavItem.scss';
 
-const BagItem = ({
+const BagNavItem = ({
   item,
   removeItem,
   favoriteItems,
@@ -12,7 +12,7 @@ const BagItem = ({
 }) => {
   const { name, imageUrl, price, quantity } = item;
 
-  const handleRemoveItem = () => removeItem(item);
+  const handleRemoveItem = () => removeItem(item, -1);
   const handleAddToFavorites = () => addToFavorites(item);
   const handleRemoveFromFavorites = () => removeFromFavorites(item);
 
@@ -50,4 +50,4 @@ const BagItem = ({
   );
 };
 
-export default BagItem;
+export default BagNavItem;
