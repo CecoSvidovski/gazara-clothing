@@ -4,6 +4,7 @@ export const FavoritesContext = createContext({
   favoriteItems: [],
   addItemToFavorites: () => {},
   removeItemFromFavorites: () => {},
+  findItemInFavorites: () => {},
 });
 
 export const FavoritesProvider = ({ children }) => {

@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom';
+
 import { useBagContext } from '../../contexts/BagContext';
 import { useFavoritesContext } from '../../contexts/FavoritesContext';
 
@@ -11,6 +13,9 @@ import './BagNav.scss';
 const BagNav = () => {
   const { bagItems, removeItemFromBag, bagItemsCount, bagTotalPrice } = useBagContext();
   const { favoriteItems, addItemToFavorites, removeItemFromFavorites } = useFavoritesContext();
+
+  const navigate = useNavigate();
+  const handleNavigateToBag = () => navigate('/bag');
 
   const dropdownContent = (
     <>
@@ -35,7 +40,7 @@ const BagNav = () => {
           </div>
 
           <Button style={{ width: '100%' }}>Go to checkout</Button>
-          <Button buttonType='onlyText' style={{ alignSelf: 'center' }}>
+          <Button buttonType='onlyText' style={{ alignSelf: 'center' }} onClick={handleNavigateToBag}>
             View bag
           </Button>
         </>
@@ -49,7 +54,7 @@ const BagNav = () => {
 
   return (
     <NavLink dropdownContent={dropdownContent} dropdownWidth='420px'>
-      <ShoppingBagIcon className='bag-icon' />
+      <ShoppingBagIcon className='bag-nav-icon' />
       {bagItemsCount ? (
         <span className='item-count'>
           {bagItemsCount > 99 ? '99+' : bagItemsCount}

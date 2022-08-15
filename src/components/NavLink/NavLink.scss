@@ -10,18 +10,24 @@
 
   &:hover {
     .dropdown-container {
-      display:block;
+      display:inline-block;
+      opacity: 100%;
+      visibility: visible;
     }
   }
 
   .dropdown-container {
-    display: none;
+    display: inline-block;
     position: absolute;
     padding-top: 15px;
     top: 32px;
     right: 0;
     z-index: 5;
     cursor: auto;
+    transition: visibility 0.3s cubic-bezier(0.25, 0.45, 0.45, 0.95),
+      opacity 0.3s cubic-bezier(0.25, 0.45, 0.45, 0.95);  
+    opacity: 0%;
+    visibility: hidden;
 
     .dropdown {
       width: 240px;

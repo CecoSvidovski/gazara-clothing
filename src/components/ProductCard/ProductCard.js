@@ -50,10 +50,7 @@ const ProductCard = ({ product }) => {
             <HeartIcon className='heart-icon' />
           </span>
         ) : (
-          <span
-            className='add-to-favorites'
-            onClick={handleAddToFavorites}
-          >
+          <span className='add-to-favorites' onClick={handleAddToFavorites}>
             <HeartIcon className='heart-icon' />
           </span>
         )}

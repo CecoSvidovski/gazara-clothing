@@ -14,6 +14,7 @@ const Button = ({ children, buttonType = 'default', ...props }) => {
 
   return (
     <button className={className} {...props}>
+      <span />
       {children}
     </button>
   );

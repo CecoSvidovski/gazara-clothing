@@ -4,25 +4,33 @@
   height: 100px;
   position: relative;
   margin-bottom: 15px;
+  transition: background-color 0.3s cubic-bezier(0.25, 0.45, 0.45, 0.95);
 
-  img {
-    width: 30%;
-    object-fit: cover;
+  .image-container {
+    display: flex;
+    width: 100px;
     height: 100px;
+
+    img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+    }
   }
 
   .item-details {
-    width: 70%;
+    height: 100px;
+    width: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 15px;
+    padding: 10px 10px 10px 15px;
 
     .name-container {
       display: flex;
       flex-direction: column;
-      max-width: 75%;
+      max-width: 205px;
 
       .name {
         font-size: 16px;
@@ -45,7 +53,7 @@
         color: rgb(119, 127, 133);
         font-size: 14px;
         cursor: pointer;
-        transition: color 0.4s cubic-bezier(0.25, 0.45, 0.45, 0.95);
+        transition: color 0.3s cubic-bezier(0.25, 0.45, 0.45, 0.95);
 
         .heart-icon {
           margin-right: 4px;
@@ -57,7 +65,7 @@
 
           path {
             fill: rgba(239, 0, 12, 0);
-            transition: fill 0.4s cubic-bezier(0.25, 0.45, 0.45, 0.95);
+            transition: fill 0.3s cubic-bezier(0.25, 0.45, 0.45, 0.95);
           }
         }
 
@@ -89,24 +97,29 @@
     }
   }
   .remove {
-    display: none;
+    display: inline-block;
     position: absolute;
-    right: 10px;
-    top: 0px;
-    color: #777f85;
+    right: 5px;
+    top: 5px;
+    color: rgba($color: #777f85, $alpha: 0);
     cursor: pointer;
+    transition: color 0.3s cubic-bezier(0.25, 0.45, 0.45, 0.95);
   }
 
   &:hover {
+    background-color: rgba($color: #777f85, $alpha: 0.05);
+
     .remove {
-      display: inline-block;
-      transition: filter 0.3s cubic-bezier(0.25, 0.45, 0.47, 0.95),
-        color 0.4s cubic-bezier(0.25, 0.45, 0.45, 0.95);
+      color: #777f85;
+      transition: color 0.3s cubic-bezier(0.25, 0.45, 0.45, 0.95);
 
       &:hover {
         color: #0a0a0a;
-        filter: drop-shadow(0px 0.75px 0.35px rgba(0, 0, 0, 0.12));
       }
     }
+  }
+
+  &:last-child {
+    margin-bottom: 0;
   }
 }

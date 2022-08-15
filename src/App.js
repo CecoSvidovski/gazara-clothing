@@ -4,6 +4,7 @@ import Navigation from './pages/Navigation';
 import Home from './pages/Home';
 import Authentication from './pages/Auth';
 import Shop from './pages/Shop';
+import Bag from './pages/Bag';
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
         <Route index element={<Home />} />
         <Route path='shop' element={<Shop />} />
         <Route path='auth' element={<Authentication />} />
+        <Route path='bag' element={<Bag />} />
       </Route>
     </Routes>
   );

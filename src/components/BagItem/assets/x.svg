@@ -1,0 +1,19 @@
+<svg 
+  width="24px" 
+  height="24px" 
+  viewBox="0 0 24 24" 
+  role="img" 
+  xmlns="http://www.w3.org/2000/svg" 
+  aria-labelledby="removeIconTitle" 
+  stroke="currentColor" 
+  stroke-width="1" 
+  stroke-linecap="square" 
+  stroke-linejoin="miter" 
+  fill="none" 
+  color="currentColor"
+> 
+  <title id="removeIconTitle">Remove Item</title> 
+  <g>
+    <path d="M6.34314575 6.34314575L17.6568542 17.6568542M6.34314575 17.6568542L17.6568542 6.34314575"/> 
+  </g>
+</svg>

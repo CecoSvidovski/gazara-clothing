@@ -20,7 +20,9 @@ const BagNavItem = ({
 
   return (
     <div className='cart-item-container'>
-      <img src={imageUrl} alt={name} />
+      <div className='image-container'>
+        <img src={imageUrl} alt={name} />
+      </div>
       <div className='item-details'>
         <div className='name-container'>
           <span className='name'>{name}</span>
@@ -33,7 +35,10 @@ const BagNavItem = ({
               Add to favorites
             </span>
           ) : (
-            <span className='favorite active' onClick={handleRemoveFromFavorites}>
+            <span
+              className='favorite active'
+              onClick={handleRemoveFromFavorites}
+            >
               <HeartIcon className='heart-icon' />
               Added to favorites
             </span>
