@@ -44,8 +44,8 @@ const BagNavItem = ({
             </span>
           )}
         </div>
-        <div className='total-price-container'>
-          <span className='total-price'>${quantity * price}</span>
+        <div className='item-total-container'>
+          <span className='item-total-price'>${quantity * price}</span>
         </div>
       </div>
       <div className='remove' onClick={handleRemoveItem}>

@@ -15,7 +15,7 @@
     "_id": 3,
     "name": "Black Cap",
     "imageUrl": "/img/products/men/hats/03/preview.jpg",
-    "price": 35
+    "price": 22
   },
   {
     "_id": 4,
@@ -27,7 +27,7 @@
     "_id": 5,
     "name": "Black Brim",
     "imageUrl": "/img/products/men/hats/05/03.jpg",
-    "price": 18
+    "price": 24
   },
   {
     "_id": 6,
@@ -45,12 +45,12 @@
     "_id": 8,
     "name": "Bordeaux Brim",
     "imageUrl": "/img/products/women/hats/02/preview.jpg",
-    "price": 16
+    "price": 25
   },
   {
     "_id": 9,
     "name": "Yellow Beanie",
     "imageUrl": "/img/products/men/hats/07/preview.jpg",
-    "price": 18
+    "price": 15
   }
 ]

@@ -1,9 +1,4 @@
-import {
-  createContext,
-  useState,
-  useContext,
-  useEffect,
-} from 'react';
+import { createContext, useState, useContext, useEffect } from 'react';
 
 export const BagContext = createContext({
   bagItems: [],
@@ -11,6 +6,7 @@ export const BagContext = createContext({
   bagTotalPrice: 0,
   addItemToBag: () => { },
   removeItemFromBag: () => { },
+  deliveryFee: 0,
 });
 
 export const BagProvider = ({ children }) => {
@@ -20,27 +16,30 @@ export const BagProvider = ({ children }) => {
 
   useEffect(() => {
     const updatedCount = bagItems.reduce(
-      (acc, item) => acc += item.quantity, 0);
+      (acc, item) => (acc += item.quantity), 0);
 
     setBagItemsCount(updatedCount);
   }, [bagItems]);
 
   useEffect(() => {
     const updatedTotalPrice = bagItems.reduce(
-      (acc, item) => acc += item.price * item.quantity, 0);
+      (acc, item) => (acc += item.price * item.quantity), 0);
 
     setBagTotalPrice(updatedTotalPrice);
   }, [bagItems]);
+
+  const deliveryFee = bagTotalPrice >= 100 || !bagItems.length ? 0 : 5;
 
   const findItem = (item) =>
     bagItems.find((bagItem) => bagItem._id === item._id);
 
   const addItemToBag = (item, quantity = 1) => {
-    if(quantity <= 0) return;
+    if (quantity <= 0) return;
 
     const existingBagItem = findItem(item);
 
-    if (!existingBagItem) return setBagItems([...bagItems, { ...item, quantity }]);
+    if (!existingBagItem)
+      return setBagItems([...bagItems, { ...item, quantity }]);
 
     const bagItemsUpdated = bagItems.map((bagItem) =>
       bagItem._id === item._id
@@ -52,7 +51,7 @@ export const BagProvider = ({ children }) => {
   };
 
   const removeItemFromBag = (item, quantity = 1) => {
-    if(quantity === 0) return;
+    if (quantity === 0) return;
 
     const existingBagItem = findItem(item);
 
@@ -84,6 +83,7 @@ export const BagProvider = ({ children }) => {
         bagTotalPrice,
         addItemToBag,
         removeItemFromBag,
+        deliveryFee,
       }}
     >
       {children}

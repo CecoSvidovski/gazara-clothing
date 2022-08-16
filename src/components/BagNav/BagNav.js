@@ -11,8 +11,15 @@ import BagNavItem from '../BagNavItem/BagNavItem';
 import './BagNav.scss';
 
 const BagNav = () => {
-  const { bagItems, removeItemFromBag, bagItemsCount, bagTotalPrice } = useBagContext();
-  const { favoriteItems, addItemToFavorites, removeItemFromFavorites } = useFavoritesContext();
+  const {
+    bagItems,
+    bagItemsCount,
+    bagTotalPrice,
+    removeItemFromBag,
+    deliveryFee,
+  } = useBagContext();
+  const { favoriteItems, addItemToFavorites, removeItemFromFavorites } =
+    useFavoritesContext();
 
   const navigate = useNavigate();
   const handleNavigateToBag = () => navigate('/bag');
@@ -36,11 +43,17 @@ const BagNav = () => {
 
           <div className='total-price-container'>
             <span className='total-text'>Total:</span>
-            <span className='total-price'>${bagTotalPrice}</span>
+            <span className='total-price'>${bagTotalPrice + deliveryFee}</span>
           </div>
 
+          <span className='fee-message'>{'(Delivery fee included)'}</span>
+
           <Button style={{ width: '100%' }}>Go to checkout</Button>
-          <Button buttonType='onlyText' style={{ alignSelf: 'center' }} onClick={handleNavigateToBag}>
+          <Button
+            buttonType='onlyText'
+            style={{ alignSelf: 'center' }}
+            onClick={handleNavigateToBag}
+          >
             View bag
           </Button>
         </>

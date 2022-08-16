@@ -7,9 +7,10 @@
 
   .bag {
     width: 60%;
+    height: fit-content;
     display: flex;
     flex-direction: column;
-    border-bottom: 1px solid #777f85;
+    border-bottom: 1px solid #0a0a0a;
     margin: 15px 0;
 
     .header {
@@ -20,13 +21,13 @@
         width: min(40%, 375px);
         height: 56px;
         display: flex;
-        border-bottom: 1px solid #777f85;
+        border-bottom: 1px solid #0a0a0a;
         justify-self: flex-start;
 
         h2 {
           position: relative;
           font-size: 32px;
-          font-weight:600;
+          font-weight: 600;
           margin: 0 0 0 8px;
           top: 22px;
           letter-spacing: -1px;
@@ -36,12 +37,23 @@
     }
     .items-container {
       width: 100%;
-      max-height: 60vh;
+      max-height: 60.36vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       margin: 0 auto 0;
       overflow-x: auto;
+
+      .no-items {
+        display: flex;
+        height: 150px;
+        align-items: center;
+        justify-content: center;
+
+        h4 {
+          font-size: 18px;
+        }
+      }
     }
   }
   .total-container {
@@ -54,14 +66,14 @@
       width: 100%;
       display: flex;
       flex-direction: row;
-      justify-content:flex-end;
+      justify-content: flex-end;
 
       .title {
         width: min(55%, 280px);
         height: 56px;
         display: flex;
-        border-bottom: 1px solid #777f85;
-        justify-content:flex-end;
+        border-bottom: 1px solid #0a0a0a;
+        justify-content: flex-end;
         align-items: flex-end;
 
         h2 {
@@ -79,7 +91,7 @@
     .body {
       display: flex;
       flex-direction: column;
-      border-right: 1px solid #777f85;
+      border-right: 1px solid #0a0a0a;
       padding-right: 10px;
 
       .body-block {
@@ -88,16 +100,16 @@
         padding: 15px 0;
 
         .block-value {
-          font-weight:500;
+          font-weight: 500;
         }
 
         &:last-child {
           font-size: 18px;
-          font-weight:bold;
+          font-weight: bold;
           text-transform: uppercase;
 
           .block-value {
-            font-weight:bold;
+            font-weight: bold;
           }
         }
       }

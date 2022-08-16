@@ -12,6 +12,7 @@
     height: 120px;
     width: 120px;
     transition: overflow 0.8s cubic-bezier(0.25, 0.45, 0.45, 0.95);
+    margin-right: 10px;
 
     img {
       width: 120px;
@@ -28,25 +29,37 @@
   .quantity,
   .price,
   .total-price {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
     width: 10%;
+    user-select: none;
   }
 
   .quantity {
     display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: max(12%, 80px);
 
-    .arrow {
+    .chevron {
       cursor: pointer;
+      width: 24px;
+      height: 24px;
     }
 
     .value {
-      margin: 0 10px;
+      display: flex;
+      justify-content: center;
+      width: 32px;
     }
   }
 
   .price {
+    position: relative;
     .multiplied {
       position: relative;
-      right: 45%;
+      right: 4px;
       bottom: 1px;
     }
   }
@@ -55,23 +68,30 @@
     font-weight: bold;
   }
 
-  .remove {
-    display: flex;
-    justify-content: flex-end;
+  .icon-btn {
+    width: 24px;
+    height: 24px;
     color: #777f85;
-    width: 32px;
     cursor: pointer;
     transition: color 0.3s cubic-bezier(0.25, 0.45, 0.45, 0.95);
+
+    path,
+    polyline {
+      width: 24px;
+      height: 24px;
+    }
+
+    &:hover {
+      color: #0a0a0a;
+    }
+  }
+
+  .remove {
+    justify-content: flex-end;
   }
 
   &:hover {
     background-color: rgba($color: #777f85, $alpha: 0.05);
-
-    .remove {
-      &:hover {
-        color: #0a0a0a;
-      }
-    }
 
     .image-container {
       img {

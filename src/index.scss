@@ -11,6 +11,7 @@ body {
   background-color: #f3f3f3;
   color: #0a0a0a;
   max-width: min(94vw, 1800px);
+  min-width: 980px;
   font-family: 'Inter', sans-serif;
 
   *::-webkit-scrollbar {

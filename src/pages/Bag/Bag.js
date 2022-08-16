@@ -6,8 +6,13 @@ import Button from '../../components/Button';
 import './Bag.scss';
 
 const Bag = () => {
-  const { bagItems, bagTotalPrice, addItemToBag, removeItemFromBag } = useBagContext();
-  const deliveryFee = bagTotalPrice >= 50 ? 0 : 5;
+  const {
+    bagItems,
+    bagTotalPrice,
+    addItemToBag,
+    removeItemFromBag,
+    deliveryFee,
+  } = useBagContext();
 
   return (
     <div className='bag-container'>
@@ -18,9 +23,20 @@ const Bag = () => {
           </span>
         </div>
         <div className='items-container'>
-          {bagItems.map((item) => (
-            <BagItem key={item._id} item={item} />
-          ))}
+          {bagItems.length ? (
+            bagItems.map((item) => (
+              <BagItem
+                key={item._id}
+                item={item}
+                addItem={addItemToBag}
+                removeItem={removeItemFromBag}
+              />
+            ))
+          ) : (
+            <div className='no-items'>
+              <h4>Your shopping bag is empty.</h4>
+            </div>
+          )}
         </div>
       </div>
       <div className='total-container'>
@@ -36,7 +52,9 @@ const Bag = () => {
           </div>
           <div className='body-block'>
             <span className='block-name'>Delivery fee*</span>
-            <span className='block-value'>{deliveryFee ? `$${deliveryFee}` : 'FREE' }</span>
+            <span className='block-value'>
+              {deliveryFee ? `$${deliveryFee}` : 'FREE'}
+            </span>
           </div>
           <div className='body-block'>
             <span className='block-name'>Total</span>
@@ -44,7 +62,7 @@ const Bag = () => {
           </div>
         </div>
         <div className='footer'>
-          <span>*Orders over $50 qualify for free delivery</span>
+          <span>*Orders over $100 qualify for free delivery</span>
           <Button style={{ width: '100%' }}>Go to checkout</Button>
         </div>
       </div>

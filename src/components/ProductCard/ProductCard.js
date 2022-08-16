@@ -30,12 +30,15 @@ const ProductCard = ({ product }) => {
         <span className='product-price'>{price}</span>
       </div>
       <div className='button-container'>
-        <Button buttonType='smallInverted' style={{ width: '35%' }}>
+        <Button
+          buttonType='smallInverted'
+          style={{ width: '37%', padding: '0 10px' }}
+        >
           View
         </Button>
         <Button
           buttonType='smallInverted'
-          style={{ width: '60%' }}
+          style={{ width: '58%', padding: '0 10px' }}
           onClick={handleAddToBag}
         >
           Add to bag
