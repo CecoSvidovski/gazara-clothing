@@ -10,9 +10,13 @@
 
   &:hover {
     .dropdown-container {
-      display:inline-block;
+      display: inline-block;
       opacity: 100%;
       visibility: visible;
+      filter: none;
+      transition: visibility 0.3s,
+        opacity 0.3s cubic-bezier(0.25, 0.45, 0.45, 0.95),
+        filter 0.25s cubic-bezier(0.05, 0.9, 0.75, 0.85);
     }
   }
 
@@ -24,10 +28,12 @@
     right: 0;
     z-index: 5;
     cursor: auto;
-    transition: visibility 0.3s cubic-bezier(0.25, 0.45, 0.45, 0.95),
-      opacity 0.3s cubic-bezier(0.25, 0.45, 0.45, 0.95);  
+    transition: visibility 0.2s,
+      opacity 0.2s cubic-bezier(0.05, 0.35, 0.45, 0.95),
+      filter 0.25s cubic-bezier(0.05, 0.9, 0.75, 0.85) 0.06s;
     opacity: 0%;
     visibility: hidden;
+    filter: blur(4.2px);
 
     .dropdown {
       width: 240px;
