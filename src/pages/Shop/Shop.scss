@@ -4,32 +4,27 @@ $bp-large: 85.375em; // 1366px
 $bp-xlarge: 120em; // 1920px
 $bp-xxlarge: 160em; // 2560px
 
-$mq-small: "(min-width: #{$bp-small})";
-$mq-medium: "(min-width: #{$bp-medium})";
-$mq-large: "(min-width: #{$bp-large})";
-$mq-xlarge: "(min-width: #{$bp-xlarge})";
-$mq-xxlarge: "(min-width: #{$bp-xxlarge})";
+$mq-small: '(min-width: #{$bp-small})'; // 768px
+$mq-medium: '(min-width: #{$bp-medium})'; // 1024px
+$mq-large: '(min-width: #{$bp-large})'; // 1366px
+$mq-xlarge: '(min-width: #{$bp-xlarge})'; // 1920px
+$mq-xxlarge: '(min-width: #{$bp-xxlarge})'; // 2560px
 
 .products-container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(4, 25%);
+  grid-template-columns: repeat(3, 1fr);
   column-gap: 10px;
   row-gap: 50px;
 
   @media #{$mq-medium} {
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(4, 25%);
   }
-  
+
   @media #{$mq-large} {
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(4, 25%);
   }
 
   @media #{$mq-xlarge} {
     grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(4, 33%);
   }
-
 }
