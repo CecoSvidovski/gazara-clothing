@@ -1,3 +1,7 @@
+import { useState, useEffect } from 'react';
+
+import { getImgUrl } from '../../utils/firebase';
+
 import { ReactComponent as HeartIcon } from './assets/heart.svg';
 import { ReactComponent as XIcon } from './assets/x.svg';
 
@@ -10,7 +14,13 @@ const BagNavItem = ({
   addToFavorites,
   removeFromFavorites,
 }) => {
-  const { name, imageUrl, price, quantity } = item;
+  const { name, price, quantity } = item;
+
+  const [imageUrl, setImageUrl] = useState('');
+
+  useEffect(() => {
+    (async () => setImageUrl(await getImgUrl(item.previewPath)))();
+  }, [item]);
 
   const handleRemoveItem = () => removeItem(item, -1);
   const handleAddToFavorites = () => addToFavorites(item);

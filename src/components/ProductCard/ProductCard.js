@@ -1,5 +1,8 @@
+import { useState } from 'react';
+import { useEffect } from 'react';
 import { useBagContext } from '../../contexts/BagContext';
 import { useFavoritesContext } from '../../contexts/FavoritesContext';
+import { getImgUrl } from '../../utils/firebase';
 
 import Button from '../Button/Button';
 import { ReactComponent as HeartIcon } from './assets/heart.svg';
@@ -7,10 +10,15 @@ import { ReactComponent as HeartIcon } from './assets/heart.svg';
 import './ProductCard.scss';
 
 const ProductCard = ({ product }) => {
-  const { name, price, imageUrl } = product;
+  const { name, price } = product;
+  const [imageUrl, setImageUrl] = useState('')
   const { addItemToBag } = useBagContext();
   const { favoriteItems, addItemToFavorites, removeItemFromFavorites } =
     useFavoritesContext();
+  
+  useEffect(() => {
+    (async () => setImageUrl(await getImgUrl(product.previewPath)))();
+  }, [product])
 
   const handleAddToBag = () => addItemToBag(product);
   const handleAddToFavorites = () => addItemToFavorites(product);

@@ -6,7 +6,7 @@ $mq-medium: '(min-width: #{$bp-medium})'; // 1024px
 $mq-large: '(min-width: #{$bp-large})'; // 1366px
 $mq-xlarge: '(min-width: #{$bp-xlarge})'; // 1920px
 
-$width-medium: max(31vw, 320px);
+$width-medium: max(30.75vw, 320px);
 $width-large: min(23vw, 442px);
 $width-xlarge: min(18.3vw, 352px);
 

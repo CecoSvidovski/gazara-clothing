@@ -21,9 +21,13 @@ export const uuid = () => {
       (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (c / 4)))
     ).toString(16)
   );
-}
+};
 
 export const capitalize = (str) => {
   const lower = str.toLowerCase();
   return lower.charAt(0).toUpperCase() + lower.slice(1);
-}
+};
+
+export const toTitleCase = (s) => s
+    .replace(/^[-_]*(.)/, (_, c) => c.toUpperCase())
+    .replace(/[-_]+(.)/g, (_, c) => ' ' + c.toUpperCase());

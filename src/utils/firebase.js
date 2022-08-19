@@ -21,7 +21,7 @@ import {
   collectionGroup,
 } from 'firebase/firestore';
 import { getStorage, ref, getDownloadURL } from 'firebase/storage';
-import { titleToKebabCase } from './stringUtils';
+import { titleToKebabCase, toTitleCase, uuid } from './stringUtils';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyB0ug2_VBUcFA8gR76VcKA4GN9s8h24-dU',
@@ -47,8 +47,8 @@ export const db = getFirestore(app);
 
 export const storage = getStorage(app);
 
-export const addCollectionAndDocuments = async (collectionKey, shopData) => {
-  const collectionRef = collection(db, collectionKey);
+export const CreateProductDocuments = async (shopData) => {
+  const collectionRef = collection(db, 'products');
   const batch = writeBatch(db);
 
   try {
@@ -102,10 +102,21 @@ export const getDocumentsFromQuery = async (q) => {
   }));
 };
 
-export const getDocuments = async (conditions) => {
-  const gender = conditions && conditions.gender;
-  const category = conditions && conditions.category;
-  const color = conditions && conditions.color;
+export const getProducts = async (criteria) => {
+  const gender =
+    criteria && criteria.gender && (criteria.gender !== 'all')
+      ? criteria.gender
+      : null;
+
+  const category =
+    (criteria && criteria.category) && (criteria.category !== 'all')
+      ? criteria.category
+      : null;
+      
+  const color =
+    (criteria && criteria.color) && (criteria.color !== 'all')
+      ? criteria.color
+      : null;
 
   let q = query(collectionGroup(db, 'items'));
   let queries = [];
@@ -142,6 +153,36 @@ export const getDocuments = async (conditions) => {
   } catch (error) {
     console.log('Error while getting the documents', error.message);
   }
+};
+
+export const getAllCategories = async () => {
+  const q = query(collectionGroup(db, 'categories'));
+  const categories = await getDocumentsFromQuery(q);
+  return [...new Map(categories.map((item) => [item['_id'], item])).values()];
+};
+
+export const getAllColors = async () => {
+  const q = query(collectionGroup(db, 'colors'));
+  return await getDocumentsFromQuery(q);
+};
+
+export const createColorCollection = async () => {
+  const allProducts = await getProducts();
+  const uniqueColors = [
+    ...new Map(allProducts.map((item) => [item['color'], item])).values(),
+  ].map((item) => ({ color: item.color, title: toTitleCase(item.color) }));
+
+  const collectionRef = collection(db, 'colors');
+  const batch = writeBatch(db);
+
+  uniqueColors.forEach((item) => {
+    const docRef = doc(collectionRef, item.color);
+    batch.set(docRef, {
+      title: item.title,
+    });
+  });
+
+  console.log(await batch.commit(), 'resolved');
 };
 
 export const createUserDocument = async (user, additionalInfo = {}) => {
