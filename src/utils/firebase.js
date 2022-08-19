@@ -21,7 +21,7 @@ import {
   collectionGroup,
 } from 'firebase/firestore';
 import { getStorage, ref, getDownloadURL } from 'firebase/storage';
-import { titleToKebabCase, toTitleCase, uuid } from './stringUtils';
+import { titleToKebabCase, toTitleCase } from './stringUtils';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyB0ug2_VBUcFA8gR76VcKA4GN9s8h24-dU',

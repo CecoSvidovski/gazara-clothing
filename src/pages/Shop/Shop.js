@@ -6,7 +6,7 @@ import SelectInput from '../../components/SelectInput';
 import './Shop.scss';
 
 const Shop = () => {
-  const { products, categories, colors, setGenderCriteria, setCategoryCriteria, setColorCriteria } = useProductsContext();
+  const { products, categories, colors, genderCriteria, categoryCriteria, colorCriteria, setGenderCriteria, setCategoryCriteria, setColorCriteria,  } = useProductsContext();
 
   const handleGenderChange = (e) => {
     setGenderCriteria(e.target.value);
@@ -22,12 +22,12 @@ const Shop = () => {
     <div className='shop-container'>
       <div className='header'>
         <div className='category-selector-container'>
-          <SelectInput label='Gender' style={{ margin: '30px 0', width: '32%' }} onChange={handleGenderChange}>
+          <SelectInput label='Gender' style={{ margin: '30px 0', width: '32%' }} onChange={handleGenderChange} value={genderCriteria}>
             <option value='all'>All</option>
             <option value='men'>Men</option>
             <option value='women'>Women</option>
           </SelectInput>
-          <SelectInput label='Category' style={{ margin: '30px 0', width: '32%' }} onChange={handleCategoryChange}>
+          <SelectInput label='Category' style={{ margin: '30px 0', width: '32%' }} onChange={handleCategoryChange} value={categoryCriteria}>
             <option value='all'>All</option>
             {categories.map((c) => (
               <option key={c._id} value={c._id}>
@@ -35,7 +35,7 @@ const Shop = () => {
               </option>
             ))}
           </SelectInput>
-          <SelectInput label='Color' style={{ margin: '30px 0', width: '32%' }} onChange={handleColorChange}>
+          <SelectInput label='Color' style={{ margin: '30px 0', width: '32%' }} onChange={handleColorChange} value={colorCriteria}>
             <option value='all'>All</option>
             {colors.map((c) => (
               <option key={c._id} value={c._id}>

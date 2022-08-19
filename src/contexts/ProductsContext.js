@@ -3,7 +3,6 @@ import { createContext, useState, useEffect, useContext } from 'react';
 import {
   getProducts,
   getAllCategories,
-  createColorCollection,
   getAllColors,
 } from '../utils/firebase.js';
 
@@ -13,6 +12,9 @@ export const ProductsContext = createContext({
   products: [],
   categories: [],
   colors: [],
+  genderCriteria: '',
+  categoryCriteria: '',
+  colorCriteria: '',
   setGenderCriteria: () => {},
   setCategoryCriteria: () => {},
   setColorCriteria: () => {},
@@ -58,6 +60,9 @@ export const ProductsProvider = ({ children }) => {
         products,
         categories,
         colors,
+        genderCriteria,
+        categoryCriteria,
+        colorCriteria,
         setGenderCriteria,
         setCategoryCriteria,
         setColorCriteria,
