@@ -5,20 +5,32 @@ import { useFavoritesContext } from '../../contexts/FavoritesContext';
 import { getImgUrl } from '../../utils/firebase';
 
 import Button from '../Button/Button';
+import ImageSkeleton from '../ImageSkeleton';
 import { ReactComponent as HeartIcon } from './assets/heart.svg';
 
 import './ProductCard.scss';
 
 const ProductCard = ({ product }) => {
   const { name, price } = product;
-  const [imageUrl, setImageUrl] = useState('')
+  const [imageUrl, setImageUrl] = useState('');
   const { addItemToBag } = useBagContext();
   const { favoriteItems, addItemToFavorites, removeItemFromFavorites } =
     useFavoritesContext();
-  
+  const [isImageLoading, setIsImageLoading] = useState(true);
+
   useEffect(() => {
-    (async () => setImageUrl(await getImgUrl(product.previewPath)))();
-  }, [product])
+    const img = new Image();
+    img.onload = () => {
+      setIsImageLoading(false);
+    }
+    getImgUrl(product.previewPath)
+      .then((imageUrl) => {
+        setImageUrl(imageUrl)
+        img.src = imageUrl;
+      });
+      
+    
+  }, [product]);
 
   const handleAddToBag = () => addItemToBag(product);
   const handleAddToFavorites = () => addItemToFavorites(product);
@@ -31,7 +43,7 @@ const ProductCard = ({ product }) => {
   return (
     <div className='product-card-container'>
       <div className='image-container'>
-        <img src={imageUrl} alt={name} />
+        {isImageLoading ? <ImageSkeleton /> : <img src={imageUrl} alt={name} />}
       </div>
       <div className='footer'>
         <span className='product-name'>{name}</span>
