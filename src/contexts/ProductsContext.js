@@ -12,21 +12,14 @@ export const ProductsContext = createContext({
   products: [],
   categories: [],
   colors: [],
-  genderCriteria: '',
-  categoryCriteria: '',
-  colorCriteria: '',
-  setGenderCriteria: () => {},
-  setCategoryCriteria: () => {},
-  setColorCriteria: () => {},
+  setParams: () => {},
 });
 
 export const ProductsProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [colors, setColors] = useState([]);
-  const [genderCriteria, setGenderCriteria] = useState('');
-  const [categoryCriteria, setCategoryCriteria] = useState('');
-  const [colorCriteria, setColorCriteria] = useState('');
+  const [params, setParams] = useState({});
 
   // useEffect(() => {
   //   addCollectionsAndDocuments('products', SHOP_DATA);
@@ -45,14 +38,14 @@ export const ProductsProvider = ({ children }) => {
   useEffect(() => {
     (async () => {
       const criteria = {
-        gender: genderCriteria,
-        category: categoryCriteria,
-        color: colorCriteria,
+        gender: params.genderCriteria,
+        category: params.categoryCriteria,
+        color: params.colorCriteria,
       };
       const allProducts = await getProducts(criteria);
       setProducts(allProducts);
     })();
-  }, [genderCriteria, categoryCriteria, colorCriteria]);
+  }, [params]);
 
   return (
     <ProductsContext.Provider
@@ -60,12 +53,7 @@ export const ProductsProvider = ({ children }) => {
         products,
         categories,
         colors,
-        genderCriteria,
-        categoryCriteria,
-        colorCriteria,
-        setGenderCriteria,
-        setCategoryCriteria,
-        setColorCriteria,
+        setParams,
       }}
     >
       {children}
