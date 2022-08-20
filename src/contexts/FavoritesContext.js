@@ -49,7 +49,7 @@ export const FavoritesProvider = ({ children }) => {
           {
             _id: item._id,
             name: item.name,
-            imageUrl: item.imageUrl,
+            previewUrl: item.previewUrl,
             price: item.price,
           },
         ]);

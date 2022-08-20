@@ -11,8 +11,8 @@ const Favorites = () => {
     <div className='user-favorites-container'>
       {favoriteItems.length ? (
         <div className='products-container'>
-          {favoriteItems.map((item) => (
-            <ProductCard key={item._id} product={item} />
+          {favoriteItems.map((product) => (
+            <ProductCard key={product._id} product={product} />
           ))}
         </div>
       ) : (
