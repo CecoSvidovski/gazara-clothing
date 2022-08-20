@@ -1,6 +1,4 @@
-import { useState, useEffect } from 'react';
-
-import { getImgUrl } from '../../utils/firebase';
+import { auth } from '../../utils/firebase';
 
 import { ReactComponent as HeartIcon } from './assets/heart.svg';
 import { ReactComponent as XIcon } from './assets/x.svg';
@@ -16,22 +14,32 @@ const BagNavItem = ({
 }) => {
   const { name, price, quantity } = item;
 
-  const [imageUrl, setImageUrl] = useState('');
-
-  useEffect(() => {
-    (async () => setImageUrl(await getImgUrl(item.previewPath)))();
-  }, [item]);
-
   const handleRemoveItem = () => removeItem(item, -1);
-  const handleAddToFavorites = () => addToFavorites(item);
-  const handleRemoveFromFavorites = () => removeFromFavorites(item);
+  const handleAddToFavorites = () => {
+    const user = auth.currentUser;
+    if (!user) {
+      return alert(
+        'You need to be logged in in order to add items to your favorites.'
+      );
+    }
+    addToFavorites(item);
+  };
+  const handleRemoveFromFavorites = () => {
+    const user = auth.currentUser;
+    if (!user) {
+      return alert(
+        'You need to be logged in in order to remove items from your favorites.'
+      );
+    }
+    removeFromFavorites(item);
+  };
 
   const itemAlreadyInFavorites = favoriteItems.find((i) => i._id === item._id);
 
   return (
     <div className='cart-item-container'>
       <div className='image-container'>
-        <img src={imageUrl} alt={name} />
+        <img src={item.previewUrl} alt={name} />
       </div>
       <div className='item-details'>
         <div className='name-container'>

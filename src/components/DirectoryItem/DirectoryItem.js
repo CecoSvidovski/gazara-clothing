@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { getImgUrl } from '../../utils/firebase';
 import ImageSkeleton from '../ImageSkeleton';
 
 import './DirectoryItem.scss';
@@ -9,7 +8,6 @@ import './DirectoryItem.scss';
 const DirectoryItem = ({ category }) => {
   const { title, text, url } = category;
   const navigate = useNavigate();
-  const [imageUrl, setImageUrl] = useState('');
   const [isImageLoading, setIsImageLoading] = useState(true);
 
   useEffect(() => {
@@ -17,10 +15,7 @@ const DirectoryItem = ({ category }) => {
     img.onload = () => {
       setIsImageLoading(false);
     };
-    getImgUrl(category.imagePath).then((imageUrl) => {
-      setImageUrl(imageUrl);
-      img.src = imageUrl;
-    });
+    img.src = category.imageUrl;
   }, [category]);
 
   const handleNavigate = () => {
@@ -46,7 +41,7 @@ const DirectoryItem = ({ category }) => {
         <>
           <div
             className='background-image'
-            style={{ backgroundImage: `url(${imageUrl})` }}
+            style={{ backgroundImage: `url(${category.imageUrl})` }}
           />
           <div className='category-body'>
             <h2>{text}</h2>

@@ -1,0 +1,27 @@
+import { useFavoritesContext } from '../../contexts/FavoritesContext';
+
+import ProductCard from '../../components/ProductCard';
+
+import './Favorites.scss';
+
+const Favorites = () => {
+  const { favoriteItems } = useFavoritesContext();
+
+  return (
+    <div className='user-favorites-container'>
+      {favoriteItems.length ? (
+        <div className='products-container'>
+          {favoriteItems.map((item) => (
+            <ProductCard key={item._id} product={item} />
+          ))}
+        </div>
+      ) : (
+        <div className='no-items'>
+          <h2>You currently have no items in favorites.</h2>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default Favorites;

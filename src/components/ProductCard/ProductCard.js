@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { useBagContext } from '../../contexts/BagContext';
 import { useFavoritesContext } from '../../contexts/FavoritesContext';
-import { getImgUrl } from '../../utils/firebase';
+import { auth } from '../../utils/firebase';
 
 import Button from '../Button/Button';
 import ImageSkeleton from '../ImageSkeleton';
@@ -12,37 +12,52 @@ import { ReactComponent as HeartIcon } from './assets/heart.svg';
 import './ProductCard.scss';
 
 const ProductCard = ({ product }) => {
-  const { _id, name, price, previewPath } = product;
+  const { _id, name, price, previewUrl } = product;
   const { addItemToBag } = useBagContext();
   const { favoriteItems, addItemToFavorites, removeItemFromFavorites } =
     useFavoritesContext();
-  const [imageUrl, setImageUrl] = useState('');
   const [isImageLoading, setIsImageLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
-    (async () => {
-      const img = new Image();
-      img.onload = () => {
-        setIsImageLoading(false);
-      };
-      const imgUrl = await getImgUrl(previewPath);
-      img.src = imgUrl;
-      setImageUrl(imgUrl);
-    })();
-  }, [product, previewPath]);
+    const img = new Image();
+    img.onload = () => {
+      setIsImageLoading(false);
+    };
+    img.src = previewUrl;
+  }, [previewUrl]);
 
   const handleViewProduct = () => navigate(`/products/${_id}`);
   const handleAddToBag = () => addItemToBag(product);
-  const handleAddToFavorites = () => addItemToFavorites(product);
-  const handleRemoveFromFavorites = () => removeItemFromFavorites(product);
+  const handleAddToFavorites = () => {
+    const user = auth.currentUser;
+    if (!user) {
+      return alert(
+        'You need to be logged in in order to add items to your favorites.'
+      );
+    }
+    addItemToFavorites(product);
+  };
+  const handleRemoveFromFavorites = () => {
+    const user = auth.currentUser;
+    if (!user) {
+      return alert(
+        'You need to be logged in in order to remove items from your favorites.'
+      );
+    }
+    removeItemFromFavorites(product);
+  };
 
   const itemAlreadyInFavorites = favoriteItems.find((i) => i._id === _id);
 
   return (
     <div className='product-card-container'>
       <div className='image-container'>
-        {isImageLoading ? <ImageSkeleton /> : <img src={imageUrl} alt={name} />}
+        {isImageLoading ? (
+          <ImageSkeleton />
+        ) : (
+          <img src={previewUrl} alt={name} />
+        )}
       </div>
       <div className='footer'>
         <span className='product-name'>{name}</span>

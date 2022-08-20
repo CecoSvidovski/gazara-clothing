@@ -1,10 +1,8 @@
 import { useState, useEffect } from 'react';
 
-import { getImgUrl } from '../../utils/firebase';
 import ImageSkeleton from '../ImageSkeleton';
 
-const CarouselImage = ({ imagePath }) => {
-  const [imageUrl, setImageUrl] = useState('');
+const CarouselImage = ({ imageUrl }) => {
   const [isImageLoading, setIsImageLoading] = useState(true);
 
   useEffect(() => {
@@ -12,14 +10,14 @@ const CarouselImage = ({ imagePath }) => {
     img.onload = () => {
       setIsImageLoading(false);
     };
-    (async () => {
-      const imgUrl = await getImgUrl(imagePath);
-      img.src = imgUrl;
-      setImageUrl(imgUrl)
-    })();
-  }, [imagePath]);
+    img.src = imageUrl;
+  }, [imageUrl]);
 
-  return(isImageLoading ? <ImageSkeleton /> : <img src={imageUrl} alt='Product' />)
+  return isImageLoading ? (
+    <ImageSkeleton />
+  ) : (
+    <img src={imageUrl} alt='Product' />
+  );
 };
 
 export default CarouselImage;

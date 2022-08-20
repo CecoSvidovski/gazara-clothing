@@ -28,8 +28,8 @@ const ProductDetails = () => {
   return (
     <div className='product-container'>
       <div className='slider-container'>
-        {product.imagePaths && product.imagePaths.length > 0 ? (
-          <Carousel imagePaths={product.imagePaths} />
+        {product.imageUrls && product.imageUrls.length > 0 ? (
+          <Carousel imageUrls={product.imageUrls} />
         ) : (
           <ImageSkeleton />
         )}

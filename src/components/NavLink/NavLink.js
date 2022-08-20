@@ -7,6 +7,7 @@ const NavLinkDropdown = ({
   dropdownContent,
   dropdownWidth,
   className,
+  onClick,
   ...props
 }) => {
   return (
@@ -16,6 +17,7 @@ const NavLinkDropdown = ({
           ? `nav-link-container ${className}`
           : 'nav-link-container'
       }
+      onClick={onClick}
       {...props}
     >
       {children}

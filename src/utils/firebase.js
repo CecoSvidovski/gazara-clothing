@@ -19,6 +19,7 @@ import {
   getDocs,
   where,
   collectionGroup,
+  deleteDoc,
 } from 'firebase/firestore';
 import { getStorage, ref, getDownloadURL } from 'firebase/storage';
 import { titleToKebabCase, toTitleCase } from './stringUtils';
@@ -52,7 +53,7 @@ export const CreateProductDocuments = async (shopData) => {
   const batch = writeBatch(db);
 
   try {
-    Object.entries(shopData).forEach(([genderKey, genderCollection]) => {
+    for (const [genderKey, genderCollection] of Object.entries(shopData)) {
       const docRef = doc(collectionRef, genderKey);
 
       batch.set(docRef, {
@@ -65,7 +66,7 @@ export const CreateProductDocuments = async (shopData) => {
         'categories'
       );
 
-      genderCollection.forEach((documentObject) => {
+      for (const documentObject of genderCollection) {
         console.log(documentObject.categoryTitle);
         const key = titleToKebabCase(documentObject.categoryTitle);
         const docRef = doc(genderCollectionRef, key);
@@ -76,12 +77,31 @@ export const CreateProductDocuments = async (shopData) => {
 
         const newCollectionRef = collection(genderCollectionRef, key, 'items');
 
-        documentObject.items.forEach((item) => {
+        for (const item of documentObject.items) {
+          const previewImgUrl = await getImgUrl(item.previewPath);
+          let itemImgUrls = [];
+
+          for (const imgPath of item.imagePaths) {
+            const img = await getImgUrl(imgPath);
+            itemImgUrls.push(img);
+          }
+
           const newDocRef = doc(newCollectionRef, item._id);
-          batch.set(newDocRef, item);
-        });
-      });
-    });
+          batch.set(newDocRef, {
+            _id: item._id,
+            name: item.name,
+            previewUrl: previewImgUrl,
+            imageUrls: itemImgUrls,
+            price: item.price,
+            description: item.description,
+            gender: item.gender,
+            color: item.color,
+            quantityInStock: item.quantityInStock,
+            category: item.category,
+          });
+        }
+      }
+    }
   } catch (error) {
     console.log('Error setting the batch for collections', error.message);
   }
@@ -174,6 +194,58 @@ export const getAllCategories = async () => {
 export const getAllColors = async () => {
   const q = query(collectionGroup(db, 'colors'));
   return await getDocumentsFromQuery(q);
+};
+
+export const getUserFavoriteItems = async () => {
+  const user = auth.currentUser;
+  if (!user) {
+    throw new Error('User not signed in');
+  }
+
+  const collectionRef = collection(db, 'favorites', user.uid, 'favorite-items');
+  const favoritesDocument = await getDocumentsFromQuery(query(collectionRef));
+
+  return favoritesDocument;
+};
+
+export const addDocumentToFavorites = async (document) => {
+  const user = auth.currentUser;
+
+  if (!user) {
+    console.log('User is not signed in!');
+    return;
+  }
+  const docRef = doc(db, 'favorites', user.uid, 'favorite-items', document._id);
+  const docSnapshot = await getDoc(docRef);
+
+  if (!docSnapshot.exists()) {
+    try {
+      await setDoc(docRef, document);
+      return 'success';
+    } catch (error) {
+      console.log('Error creating the document', error);
+    }
+  } else console.log('Item already in favorites');
+};
+
+export const removeDocumentFromFavorites = async (document) => {
+  const user = auth.currentUser;
+
+  if (!user) {
+    console.log('User is not signed in!');
+    return;
+  }
+
+  const docRef = doc(db, 'favorites', user.uid, 'favorite-items', document._id);
+  const docSnapshot = await getDoc(docRef);
+
+  if (!docSnapshot.exists()) return;
+  try {
+    await deleteDoc(docRef);
+    return 'success';
+  } catch (error) {
+    console.log('Error deleting the document', error.message);
+  }
 };
 
 export const createColorCollection = async () => {

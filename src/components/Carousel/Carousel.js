@@ -4,12 +4,12 @@ import { ReactComponent as ChevronRightIcon } from './assets/chevron-right.svg';
 import './Carousel.scss';
 import CarouselImage from './CarouselImage';
 
-const Carousel = ({ imagePaths }) => {
-  const imgPaths = imagePaths.slice(0, 10);
+const Carousel = ({ imageUrls }) => {
+  const imgUrls = imageUrls.slice(0, 10);
 
   return (
     <div className='slider-wrapper'>
-      {imgPaths.map((imagePath, i) => (
+      {imgUrls.map((imageUrl, i) => (
         <input
           key={i}
           id={`slide${i + 1}`}
@@ -19,7 +19,7 @@ const Carousel = ({ imagePaths }) => {
         />
       ))}
       <div className='slider-arrow-nav'>
-        {imgPaths.map((imagePath, i) => (
+        {imgUrls.map((imageUrl, i) => (
           <label
             key={i + 10}
             className='nav-arrow prev'
@@ -30,7 +30,7 @@ const Carousel = ({ imagePaths }) => {
         ))}
       </div>
       <div className='slider-arrow-nav'>
-        {imgPaths.map((imagePath, i) => (
+        {imgUrls.map((imageUrl, i) => (
           <label
             key={i + 20}
             className='nav-arrow next'
@@ -41,7 +41,7 @@ const Carousel = ({ imagePaths }) => {
         ))}
       </div>
       <div className='slider-nav'>
-        {imgPaths.map((imagePath, i) => (
+        {imgUrls.map((imageUrl, i) => (
           <label
             key={i + 30}
             className='nav-button'
@@ -50,11 +50,11 @@ const Carousel = ({ imagePaths }) => {
         ))}
       </div>
       <div className='slider-content'>
-        {imgPaths.map((imagePath, i) => {
-          console.log(imagePath);
+        {imgUrls.map((imageUrl, i) => {
+          console.log(imageUrl);
           return (
             <div key={i + 40} className={`slide slide${i + 1}`}>
-              <CarouselImage imagePath={imagePath} />
+              <CarouselImage imageUrl={imageUrl} />
             </div>
           );
         })}

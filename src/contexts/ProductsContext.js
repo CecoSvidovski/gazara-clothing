@@ -4,6 +4,7 @@ import {
   getProducts,
   getAllCategories,
   getAllColors,
+  CreateProductDocuments
 } from '../utils/firebase.js';
 
 // import SHOP_DATA from '../shopData.js';
@@ -22,7 +23,7 @@ export const ProductsProvider = ({ children }) => {
   const [params, setParams] = useState({});
 
   // useEffect(() => {
-  //   addCollectionsAndDocuments('products', SHOP_DATA);
+  //   CreateProductDocuments(SHOP_DATA);
   //   console.log('effect');
   // }, [])
 

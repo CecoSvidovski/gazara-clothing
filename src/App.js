@@ -6,6 +6,7 @@ import Authentication from './pages/Auth';
 import Shop from './pages/Shop';
 import Bag from './pages/Bag';
 import ProductDetails from './pages/Product/ProductDetails';
+import Favorites from './pages/Favorites/Favorites';
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
         <Route path='products/:id' element={<ProductDetails />} />
         <Route path='auth' element={<Authentication />} />
         <Route path='bag' element={<Bag />} />
+        <Route path='favorites' element={<Favorites />} />
       </Route>
     </Routes>
   );

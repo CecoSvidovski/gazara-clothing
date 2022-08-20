@@ -1,4 +1,11 @@
+import { useEffect } from 'react';
 import { createContext, useState, useContext } from 'react';
+import {
+  onAuthStateChangedListener,
+  getUserFavoriteItems,
+  addDocumentToFavorites,
+  removeDocumentFromFavorites,
+} from '../utils/firebase';
 
 export const FavoritesContext = createContext({
   favoriteItems: [],
@@ -10,6 +17,19 @@ export const FavoritesContext = createContext({
 export const FavoritesProvider = ({ children }) => {
   const [favoriteItems, setFavoriteItems] = useState([]);
 
+  useEffect(() => {
+    const unsubscribe = onAuthStateChangedListener(async (currUser) => {
+      if (currUser) {
+        const favorites = await getUserFavoriteItems();
+        setFavoriteItems(favorites);
+      } else {
+        setFavoriteItems([]);
+      }
+    });
+
+    return unsubscribe;
+  }, []);
+
   const addItemToFavorites = (item) => {
     const existingFavoriteItem = favoriteItems.find(
       (favoriteItem) => favoriteItem._id === item._id
@@ -17,17 +37,24 @@ export const FavoritesProvider = ({ children }) => {
 
     if (existingFavoriteItem) {
       alert('Item already added to favorites.');
-    } else {
-      setFavoriteItems([
-        ...favoriteItems,
-        {
-          _id: item._id,
-          name: item.name,
-          imageUrl: item.imageUrl,
-          price: item.price,
-        },
-      ]);
+      return;
     }
+
+    (async () => {
+      const result = await addDocumentToFavorites(item);
+
+      if (result) {
+        setFavoriteItems([
+          ...favoriteItems,
+          {
+            _id: item._id,
+            name: item.name,
+            imageUrl: item.imageUrl,
+            price: item.price,
+          },
+        ]);
+      }
+    })();
   };
 
   const removeItemFromFavorites = (item) => {
@@ -36,11 +63,19 @@ export const FavoritesProvider = ({ children }) => {
     );
 
     if (existingFavoriteItem) {
-      const favoriteItemsUpdated = favoriteItems.filter(
-        (favoriteItem) => favoriteItem._id !== item._id
-      );
+      if (existingFavoriteItem) {
+        (async () => {
+          const result = await removeDocumentFromFavorites(item);
 
-      setFavoriteItems(favoriteItemsUpdated);
+          if (result) {
+            const favoriteItemsUpdated = favoriteItems.filter(
+              (favoriteItem) => favoriteItem._id !== item._id
+            );
+
+            setFavoriteItems(favoriteItemsUpdated);
+          }
+        })();
+      }
     }
   };
 
