@@ -104,17 +104,17 @@ export const getDocumentsFromQuery = async (q) => {
 
 export const getProducts = async (criteria) => {
   const gender =
-    criteria && criteria.gender && (criteria.gender !== 'all')
+    criteria && criteria.gender && criteria.gender !== 'all'
       ? criteria.gender
       : null;
 
   const category =
-    (criteria && criteria.category) && (criteria.category !== 'all')
+    criteria && criteria.category && criteria.category !== 'all'
       ? criteria.category
       : null;
-      
+
   const color =
-    (criteria && criteria.color) && (criteria.color !== 'all')
+    criteria && criteria.color && criteria.color !== 'all'
       ? criteria.color
       : null;
 
@@ -155,6 +155,16 @@ export const getProducts = async (criteria) => {
   }
 };
 
+export const getProductById = async (id) => {
+  try {
+    const q = query(collectionGroup(db, 'items'), where('_id', '==', id));
+    const products = await getDocumentsFromQuery(q);
+    return products[0];
+  } catch (error) {
+    console.log(`Couldn't get the document`, error.message);
+  }
+};
+
 export const getAllCategories = async () => {
   const q = query(collectionGroup(db, 'categories'));
   const categories = await getDocumentsFromQuery(q);
@@ -185,7 +195,7 @@ export const createColorCollection = async () => {
   console.log(await batch.commit(), 'resolved');
 };
 
-export const createUserDocument = async (user, additionalInfo = {}) => {
+export const createUserAuthDocument = async (user, additionalInfo = {}) => {
   if (!user) return;
 
   const userDocRef = doc(db, 'users', user.uid);

@@ -1,6 +1,7 @@
 import { useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 
-import { createAuthUser, createUserDocument } from '../../utils/firebase';
+import { createAuthUser, createUserAuthDocument } from '../../utils/firebase';
 import { kebabToCamelCase } from '../../utils/stringUtils';
 
 import FormInput from '../FormInput';
@@ -18,6 +19,9 @@ const initialFormData = {
 const SignUpForm = () => {
   const [formFields, setFormFields] = useState(initialFormData);
   const { firstName, lastName, email, password, confirmPassword } = formFields;
+
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const handleChange = (e) => {
     const { name: nameKebab, value } = e.target;
@@ -37,9 +41,11 @@ const SignUpForm = () => {
     try {
       const { user } = await createAuthUser(email, password);
 
-      await createUserDocument(user, { firstName, lastName });
+      await createUserAuthDocument(user, { firstName, lastName });
 
       setFormFields(initialFormData);
+      window.scrollTo(0, 0);
+      if (location.state.from) navigate(location.state.from.pathname);
     } catch (error) {
       if (error.code === 'auth/email-already-in-use') {
         alert('Cannot create user, email already in use.');
@@ -99,7 +105,9 @@ const SignUpForm = () => {
           required
         />
 
-        <Button type='submit' style={{width: '100%'}}>Sign Up</Button>
+        <Button type='submit' style={{ width: '100%' }}>
+          Sign Up
+        </Button>
       </form>
     </div>
   );

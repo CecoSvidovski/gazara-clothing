@@ -1,5 +1,6 @@
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import { useBagContext } from '../../contexts/BagContext';
 import { useFavoritesContext } from '../../contexts/FavoritesContext';
 import { getImgUrl } from '../../utils/firebase';
@@ -11,31 +12,32 @@ import { ReactComponent as HeartIcon } from './assets/heart.svg';
 import './ProductCard.scss';
 
 const ProductCard = ({ product }) => {
-  const { name, price } = product;
-  const [imageUrl, setImageUrl] = useState('');
+  const { _id, name, price, previewPath } = product;
   const { addItemToBag } = useBagContext();
   const { favoriteItems, addItemToFavorites, removeItemFromFavorites } =
     useFavoritesContext();
+  const [imageUrl, setImageUrl] = useState('');
   const [isImageLoading, setIsImageLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const img = new Image();
-    img.onload = () => {
-      setIsImageLoading(false);
-    };
-    getImgUrl(product.previewPath).then((imageUrl) => {
-      setImageUrl(imageUrl);
-      img.src = imageUrl;
-    });
-  }, [product]);
+    (async () => {
+      const img = new Image();
+      img.onload = () => {
+        setIsImageLoading(false);
+      };
+      const imgUrl = await getImgUrl(previewPath);
+      img.src = imgUrl;
+      setImageUrl(imgUrl);
+    })();
+  }, [product, previewPath]);
 
+  const handleViewProduct = () => navigate(`/products/${_id}`);
   const handleAddToBag = () => addItemToBag(product);
   const handleAddToFavorites = () => addItemToFavorites(product);
   const handleRemoveFromFavorites = () => removeItemFromFavorites(product);
 
-  const itemAlreadyInFavorites = favoriteItems.find(
-    (i) => i._id === product._id
-  );
+  const itemAlreadyInFavorites = favoriteItems.find((i) => i._id === _id);
 
   return (
     <div className='product-card-container'>
@@ -50,6 +52,7 @@ const ProductCard = ({ product }) => {
         <Button
           buttonType='smallInverted'
           style={{ width: '37%', padding: '0 10px' }}
+          onClick={handleViewProduct}
         >
           View
         </Button>

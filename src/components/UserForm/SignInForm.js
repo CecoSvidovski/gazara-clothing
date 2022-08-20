@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 import { signInUser, signInWithGooglePopup } from '../../utils/firebase';
 import { kebabToCamelCase } from '../../utils/stringUtils';
@@ -16,6 +17,9 @@ const SignInForm = () => {
   const [formFields, setFormFields] = useState(initialFormData);
   const { email, password } = formFields;
 
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const handleChange = (e) => {
     const { name: nameKebabCase, value } = e.target;
     const name = kebabToCamelCase(nameKebabCase);
@@ -28,7 +32,10 @@ const SignInForm = () => {
 
     try {
       await signInUser(email, password);
+
       setFormFields(initialFormData);
+      window.scrollTo(0, 0);
+      if (location.state.from) navigate(location.state.from.pathname);
     } catch (error) {
       if (
         error.code === 'auth/wrong-password' ||
@@ -43,6 +50,9 @@ const SignInForm = () => {
 
   const signInWithGoogle = async () => {
     await signInWithGooglePopup();
+
+    window.scrollTo(0, 0);
+    if (location.state.from) navigate(location.state.from.pathname);
   };
   return (
     <div className='sign-in-container'>

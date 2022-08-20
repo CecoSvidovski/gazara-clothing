@@ -2,7 +2,7 @@ import { createContext, useState, useContext, useEffect } from 'react';
 
 import {
   onAuthStateChangedListener,
-  createUserDocument,
+  createUserAuthDocument,
 } from '../utils/firebase';
 
 const initialAuthState = {
@@ -22,7 +22,7 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChangedListener((currUser) => {
       if (currUser) {
-        createUserDocument(currUser);
+        createUserAuthDocument(currUser);
       }
       setUser(currUser);
     });

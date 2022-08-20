@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
+
 import { ReactComponent as UserIcon } from '../../assets/user.svg';
 import Button from '../Button/Button';
 import NavLink from '../NavLink';
@@ -6,6 +7,11 @@ import NavLink from '../NavLink';
 import './UserNav.scss';
 
 const UserNav = ({ user, signOut }) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const signInHandler = () => navigate('/auth', {state: {from: location}})
+
   const dropdownContent = user ? (
     <>
       <span>Hello, {user.displayName}</span>
@@ -14,11 +20,9 @@ const UserNav = ({ user, signOut }) => {
       </Button>
     </>
   ) : (
-    <Link to='/auth'>
-      <Button buttonType='small' style={{ width: '100%' }}>
-        Sign In
-      </Button>
-    </Link>
+    <Button buttonType='small' style={{ width: '100%' }} onClick={signInHandler}>
+      Sign In
+    </Button>
   );
 
   return (
