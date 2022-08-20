@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 
 import { getImgUrl } from '../../utils/firebase';
 
+import ImageSkeleton from '../ImageSkeleton';
 import { ReactComponent as XIcon } from './assets/x.svg';
 import { ReactComponent as ChevronLeftIcon } from './assets/chevron-left.svg';
 import { ReactComponent as ChevronRightIcon } from './assets/chevron-right.svg';
@@ -12,9 +13,17 @@ const BagItem = ({ item, addItem, removeItem }) => {
   const { name, price, quantity } = item;
 
   const [imageUrl, setImageUrl] = useState('');
+  const [isImageLoading, setIsImageLoading] = useState(true);
 
   useEffect(() => {
-    (async () => setImageUrl(await getImgUrl(item.previewPath)))();
+    const img = new Image();
+    img.onload = () => {
+      setIsImageLoading(false);
+    };
+    getImgUrl(item.previewPath).then((imageUrl) => {
+      setImageUrl(imageUrl);
+      img.src = imageUrl;
+    });
   }, [item]);
 
   const handleIncreaseQuantity = () => addItem(item);
@@ -24,7 +33,7 @@ const BagItem = ({ item, addItem, removeItem }) => {
   return (
     <div className='bag-item-container'>
       <div className='image-container'>
-        <img src={imageUrl} alt={name} />
+        {isImageLoading ? <ImageSkeleton /> : <img src={imageUrl} alt={name} />}
       </div>
       <span className='name'>{name}</span>
       <span className='quantity'>

@@ -22,14 +22,11 @@ const ProductCard = ({ product }) => {
     const img = new Image();
     img.onload = () => {
       setIsImageLoading(false);
-    }
-    getImgUrl(product.previewPath)
-      .then((imageUrl) => {
-        setImageUrl(imageUrl)
-        img.src = imageUrl;
-      });
-      
-    
+    };
+    getImgUrl(product.previewPath).then((imageUrl) => {
+      setImageUrl(imageUrl);
+      img.src = imageUrl;
+    });
   }, [product]);
 
   const handleAddToBag = () => addItemToBag(product);

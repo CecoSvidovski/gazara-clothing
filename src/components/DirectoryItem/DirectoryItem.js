@@ -1,24 +1,42 @@
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+import { getImgUrl } from '../../utils/firebase';
+import ImageSkeleton from '../ImageSkeleton';
 
 import './DirectoryItem.scss';
 
 const DirectoryItem = ({ category }) => {
+  const { title, text, url } = category;
   const navigate = useNavigate();
+  const [imageUrl, setImageUrl] = useState('');
+  const [isImageLoading, setIsImageLoading] = useState(true);
+
+  useEffect(() => {
+    const img = new Image();
+    img.onload = () => {
+      setIsImageLoading(false);
+    };
+    getImgUrl(category.imagePath).then((imageUrl) => {
+      setImageUrl(imageUrl);
+      img.src = imageUrl;
+    });
+  }, [category]);
 
   const handleNavigate = () => {
     window.scrollTo({
       top: 0,
       left: 0,
-      behavior: 'smooth'
+      behavior: 'smooth',
     });
-    return navigate(category.url);
+    return navigate(url);
   };
 
   return (
     <div
       className='category-container'
       style={
-        category.title === 'men' || category.title === 'women'
+        title === 'men' || title === 'women'
           ? {
               minWidth: '40%',
             }
@@ -26,14 +44,20 @@ const DirectoryItem = ({ category }) => {
       }
       onClick={handleNavigate}
     >
-      <div
-        className='background-image'
-        style={{ backgroundImage: `url(${category.imageUrl})` }}
-      />
-      <div className='category-body'>
-        <h2>{category.text}</h2>
-        <p>Shop Now</p>
-      </div>
+      {isImageLoading ? (
+        <ImageSkeleton />
+      ) : (
+        <>
+          <div
+            className='background-image'
+            style={{ backgroundImage: `url(${imageUrl})` }}
+          />
+          <div className='category-body'>
+            <h2>{text}</h2>
+            <p>Shop Now</p>
+          </div>
+        </>
+      )}
     </div>
   );
 };

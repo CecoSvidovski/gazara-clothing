@@ -6,42 +6,42 @@ const Directory = () => {
     {
       _id: 1,
       title: 'men',
-      imageUrl: '/img/men.png',
+      imagePath: '/img/directory/men.jpg',
       text: 'Men',
       url: '/shop?gender=men'
     },
     {
       _id: 2,
       title: 'women',
-      imageUrl: '/img/women.jpg',
+      imagePath: '/img/directory/women.jpg',
       text: 'Women',
       url: '/shop?gender=women'
     },
     {
       _id: 3,
       title: 'denim',
-      imageUrl: '/img/denim.jpg',
+      imagePath: '/img/directory/denim.jpg',
       text: 'Denim',
       url: '/shop?category=denim'
     },
     {
       _id: 4,
-      title: 'sneakers',
-      imageUrl: '/img/sneakers.jpg',
-      text: 'Sneakers',
-      url: '/shop?category=sneakers'
+      title: 'shoes',
+      imagePath: '/img/directory/sneakers.jpg',
+      text: 'Shoes',
+      url: '/shop?category=shoes'
     },
     {
       _id: 5,
       title: 'jackets',
-      imageUrl: '/img/jackets.jpg',
+      imagePath: '/img/directory/jackets.jpg',
       text: 'Jackets',
       url: '/shop?category=jackets'
     },
     {
       _id: 6,
       title: 'shirts',
-      imageUrl: '/img/shirts.png',
+      imagePath: '/img/directory/shirts.png',
       text: 'Shirts',
       url: '/shop?category=shirts-and-blouses'
     },
@@ -49,7 +49,7 @@ const Directory = () => {
     {
       _id: 8,
       title: 'all',
-      imageUrl: '/img/all.png',
+      imagePath: '/img/directory/all.png',
       text: 'And more.',
       url: '/shop'
     },
