@@ -1,4 +1,32 @@
-import { createContext, useState, useContext, useEffect } from 'react';
+import { createContext, useContext, useReducer } from 'react';
+
+import { createAction } from '../utils/reducer';
+
+const BAG_ACTION_TYPES = {
+  SET_BAG_ITEMS: 'SET_BAG_ITEMS',
+  SET_BAG_COUNT: 'SET_BAG_COUNT',
+  SET_BAG_TOTAL: 'SET_BAG_TOTAL',
+};
+
+const INITIAL_STATE = {
+  bagItems: [],
+  bagItemsCount: 0,
+  bagTotalPrice: 0,
+};
+
+const bagReducer = (state, action) => {
+  const { type, payload } = action;
+
+  switch (type) {
+    case BAG_ACTION_TYPES.SET_BAG_ITEMS:
+      return {
+        ...state,
+        ...payload,
+      };
+    default:
+      throw new Error(`Unhandled type ${type} in bagReducer`);
+  }
+};
 
 export const BagContext = createContext({
   bagItems: [],
@@ -10,23 +38,30 @@ export const BagContext = createContext({
 });
 
 export const BagProvider = ({ children }) => {
-  const [bagItems, setBagItems] = useState([]);
-  const [bagItemsCount, setBagItemsCount] = useState(0);
-  const [bagTotalPrice, setBagTotalPrice] = useState(0);
+  const [{ bagItems, bagItemsCount, bagTotalPrice }, dispatch] = useReducer(
+    bagReducer,
+    INITIAL_STATE
+  );
 
-  useEffect(() => {
-    const updatedCount = bagItems.reduce(
-      (acc, item) => (acc += item.quantity), 0);
+  const updateBagItemsReducer = (bagItems) => {
+    const newBagItemsCount = bagItems.reduce(
+      (total, bagItem) => total + bagItem.quantity,
+      0
+    );
 
-    setBagItemsCount(updatedCount);
-  }, [bagItems]);
+    const newBagTotalPrice = bagItems.reduce(
+      (total, bagItem) => total + bagItem.quantity * bagItem.price,
+      0
+    );
 
-  useEffect(() => {
-    const updatedTotalPrice = bagItems.reduce(
-      (acc, item) => (acc += item.price * item.quantity), 0);
+    const payload = {
+      bagItems,
+      bagItemsCount: newBagItemsCount,
+      bagTotalPrice: newBagTotalPrice,
+    };
 
-    setBagTotalPrice(updatedTotalPrice);
-  }, [bagItems]);
+    dispatch(createAction(BAG_ACTION_TYPES.SET_BAG_ITEMS, payload));
+  };
 
   const deliveryFee = bagTotalPrice >= 100 || !bagItems.length ? 0 : 5;
 
@@ -39,7 +74,7 @@ export const BagProvider = ({ children }) => {
     const existingBagItem = findItem(item);
 
     if (!existingBagItem)
-      return setBagItems([...bagItems, { ...item, quantity }]);
+      return updateBagItemsReducer([...bagItems, { ...item, quantity }]);
 
     const bagItemsUpdated = bagItems.map((bagItem) =>
       bagItem._id === item._id
@@ -47,7 +82,7 @@ export const BagProvider = ({ children }) => {
         : bagItem
     );
 
-    return setBagItems(bagItemsUpdated);
+    return updateBagItemsReducer(bagItemsUpdated);
   };
 
   const removeItemFromBag = (item, quantity = 1) => {
@@ -63,7 +98,7 @@ export const BagProvider = ({ children }) => {
         (bagItem) => bagItem._id !== item._id
       );
 
-      return setBagItems(bagItemsUpdated);
+      return updateBagItemsReducer(bagItemsUpdated);
     }
 
     const bagItemsUpdated = bagItems.map((bagItem) =>
@@ -72,7 +107,7 @@ export const BagProvider = ({ children }) => {
         : bagItem
     );
 
-    return setBagItems(bagItemsUpdated);
+    return updateBagItemsReducer(bagItemsUpdated);
   };
 
   return (
