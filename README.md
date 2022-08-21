@@ -8,19 +8,19 @@ A simple e-commerce web application built on React.
 
 The application lets you browse through a variety of clothing products. You can also:
 
-### - Authenticate
+### Authenticate
 
 - Sign in with/create your own account or sign up/in with a Google account. 
 
-### - Filter catalog items
+### Filter catalog items
 
 - Filter the products in the shop catalog based on gender, category and color criterias.
 
-### - Manage items in shopping bag
+### Manage items in shopping bag
 
 - Add products to your shopping bag, increase/decrease the quantity of the products in your shopping bag, remove them or simply view them.
 
-### - Manage items in favorites
+### Manage items in favorites
 
 - Add or remove products from your favorite products' list or view them.
 
