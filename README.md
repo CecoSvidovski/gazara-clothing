@@ -1,4 +1,6 @@
-# Gazara Clothing - SoftUni ReactJS Project Defence
+# Gazara Clothing 
+
+**A project defence for SoftUni's ReactJS course**
 
 ## How to start the project
 
