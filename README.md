@@ -2,19 +2,6 @@
 
 **A project defence for SoftUni's ReactJS course**
 
-## How to start the project
-
-In the project directory, run:
-
-### `npm install` or `npm i`
-
-Installs the project dependencies.
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
 ## Description
 
 A simple e-commerce web application built on React. 
@@ -56,3 +43,17 @@ Here is a list of all the libraries used in this project
 ### `react-toastify`
 
 - To notify the user for certain events or alert them if a validation error occurs.
+
+## How to start the project
+
+In the project directory, run:
+
+### `npm install` or `npm i`
+
+Installs the project dependencies.
+
+### `npm start`
+
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+
