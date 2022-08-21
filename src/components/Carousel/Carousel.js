@@ -51,7 +51,6 @@ const Carousel = ({ imageUrls }) => {
       </div>
       <div className='slider-content'>
         {imgUrls.map((imageUrl, i) => {
-          console.log(imageUrl);
           return (
             <div key={i + 40} className={`slide slide${i + 1}`}>
               <CarouselImage imageUrl={imageUrl} />
