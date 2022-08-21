@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 
 import { createAuthUser, createUserAuthDocument } from '../../utils/firebase';
 import { kebabToCamelCase } from '../../utils/stringUtils';
+import { toast } from 'react-toastify';
 
 import FormInput from '../FormInput';
 import Button from '../Button/Button';
@@ -34,8 +35,12 @@ const SignUpForm = () => {
     e.preventDefault();
 
     if (password !== confirmPassword) {
-      alert(`Passwords don't match`);
-      return;
+      return toast.warn(
+        `Passwords do not match`,
+        {
+          position: toast.POSITION.BOTTOM_RIGHT,
+        }
+      );
     }
 
     try {
@@ -48,7 +53,12 @@ const SignUpForm = () => {
       if (location.state.from) navigate(location.state.from.pathname);
     } catch (error) {
       if (error.code === 'auth/email-already-in-use') {
-        alert('Cannot create user, email already in use.');
+        return toast.warn(
+          'Cannot create user, email already in use.',
+          {
+            position: toast.POSITION.BOTTOM_RIGHT,
+          }
+        );
       } else {
         console.log(error);
       }

@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 
 import { useBagContext } from '../../contexts/BagContext';
 import { useFavoritesContext } from '../../contexts/FavoritesContext';
-import { auth } from '../../utils/firebase';
 
 import Button from '../Button/Button';
 import ImageSkeleton from '../ImageSkeleton';
@@ -29,24 +28,8 @@ const ProductCard = ({ product }) => {
 
   const handleViewProduct = () => navigate(`/products/${_id}`);
   const handleAddToBag = () => addItemToBag(product);
-  const handleAddToFavorites = () => {
-    const user = auth.currentUser;
-    if (!user) {
-      return alert(
-        'You need to be logged in in order to add items to your favorites.'
-      );
-    }
-    addItemToFavorites(product);
-  };
-  const handleRemoveFromFavorites = () => {
-    const user = auth.currentUser;
-    if (!user) {
-      return alert(
-        'You need to be logged in in order to remove items from your favorites.'
-      );
-    }
-    removeItemFromFavorites(product);
-  };
+  const handleAddToFavorites = () => addItemToFavorites(product);
+  const handleRemoveFromFavorites = () => removeItemFromFavorites(product);
 
   const itemAlreadyInFavorites = favoriteItems.find((i) => i._id === _id);
 

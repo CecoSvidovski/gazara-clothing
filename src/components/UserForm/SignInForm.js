@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 
 import { signInUser, signInWithGooglePopup } from '../../utils/firebase';
 import { kebabToCamelCase } from '../../utils/stringUtils';
+import { toast } from 'react-toastify';
 
 import FormInput from '../FormInput';
 import Button from '../Button/Button';
@@ -41,7 +42,12 @@ const SignInForm = () => {
         error.code === 'auth/wrong-password' ||
         error.code === 'auth/user-not-found'
       ) {
-        alert('Invalid email or password!');
+        toast.warn(
+          'Invalid email or password!',
+          {
+            position: toast.POSITION.BOTTOM_RIGHT,
+          }
+        );
       } else {
         console.log(error.message);
       }

@@ -1,11 +1,13 @@
 import { useEffect } from 'react';
 import { createContext, useState, useContext } from 'react';
 import {
+  auth,
   onAuthStateChangedListener,
   getUserFavoriteItems,
   addDocumentToFavorites,
   removeDocumentFromFavorites,
 } from '../utils/firebase';
+import { toast } from 'react-toastify';
 
 export const FavoritesContext = createContext({
   favoriteItems: [],
@@ -31,12 +33,28 @@ export const FavoritesProvider = ({ children }) => {
   }, []);
 
   const addItemToFavorites = (item) => {
+    const user = auth.currentUser;
+    if (!user) {
+      toast.warn(
+        'You need to be logged in in order to add items to your favorites.',
+        {
+          position: toast.POSITION.BOTTOM_RIGHT,
+        }
+      );
+      return;
+    }
+
     const existingFavoriteItem = favoriteItems.find(
       (favoriteItem) => favoriteItem._id === item._id
     );
 
     if (existingFavoriteItem) {
-      alert('Item already added to favorites.');
+      toast.warn(
+        'Item already in favorites.',
+        {
+          position: toast.POSITION.BOTTOM_RIGHT,
+        }
+      );
       return;
     }
 
@@ -54,10 +72,28 @@ export const FavoritesProvider = ({ children }) => {
           },
         ]);
       }
+      toast.success(
+        'Item successfully added to favorites.',
+        {
+          position: toast.POSITION.BOTTOM_RIGHT,
+        }
+      );
     })();
   };
 
   const removeItemFromFavorites = (item) => {
+    const user = auth.currentUser;
+    if (!user) {
+      toast.warn(
+        'You need to be logged in in order to remove items from your favorites.',
+        {
+          position: toast.POSITION.BOTTOM_RIGHT,
+        }
+      );
+
+      return;
+    }
+
     const existingFavoriteItem = favoriteItems.find(
       (favoriteItem) => favoriteItem._id === item._id
     );
@@ -75,6 +111,13 @@ export const FavoritesProvider = ({ children }) => {
             setFavoriteItems(favoriteItemsUpdated);
           }
         })();
+
+        toast.success(
+          'Item successfully removed from favorites.',
+          {
+            position: toast.POSITION.BOTTOM_RIGHT,
+          }
+        );
       }
     }
   };

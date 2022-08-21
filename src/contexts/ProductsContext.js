@@ -4,7 +4,7 @@ import {
   getProducts,
   getAllCategories,
   getAllColors,
-  CreateProductDocuments
+  // CreateProductDocuments
 } from '../utils/firebase.js';
 
 // import SHOP_DATA from '../shopData.js';
