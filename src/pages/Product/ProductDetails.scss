@@ -30,10 +30,64 @@ $height: min(705px, calc($width / 1.497));
       border-right: 1px solid #0a0a0a;
       padding: min(35px, calc($width / 20));
 
-      .title {
-        h2 {
-          font-size: 42px;
-          margin-top: 0px;
+      .title-block {
+        display: flex;
+        flex-direction: row;
+
+        .title {
+          h2 {
+            font-size: 42px;
+            margin-top: 0px;
+          }
+        }
+        .add-to-favorites {
+          margin: 10px 0 0 10px;
+          cursor: pointer;
+
+          svg {
+            color: #0a0a0a;
+            overflow: visible;
+            opacity: 87%;
+            width: 32px;
+            height: 32px;
+            transition: color 0.3s cubic-bezier(0.25, 0.45, 0.45, 0.95);
+
+            path#background-stroke {
+              stroke: rgba(0, 0, 0, 0.25);
+              stroke-width: 2px;
+              transition: stroke 0.3s cubic-bezier(0.25, 0.45, 0.45, 0.95);
+            }
+          }
+
+          &:hover {
+            .heart-icon {
+              color: #ef000c;
+
+              path#background-stroke {
+                stroke: rgba(239, 0, 12, 0.25);
+              }
+
+              path#main-stroke {
+                fill: rgb(239, 0, 12, 0);
+                transition: fill 0.3s cubic-bezier(0.25, 0.45, 0.45, 0.95);
+              }
+            }
+          }
+
+          &.active {
+            .heart-icon {
+              color: #ef000c;
+
+              path#background-stroke {
+                stroke: rgba(239, 0, 12, 0.25);
+                stroke-width: 2px;
+              }
+
+              path#main-stroke {
+                fill: #ef000c;
+              }
+            }
+          }
         }
       }
 

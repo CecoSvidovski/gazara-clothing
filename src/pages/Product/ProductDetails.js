@@ -4,9 +4,11 @@ import Button from '../../components/Button';
 
 import Carousel from '../../components/Carousel';
 import ImageSkeleton from '../../components/ImageSkeleton';
+import { ReactComponent as HeartIcon } from './assets/heart.svg';
 
 import { useBagContext } from '../../contexts/BagContext';
-import { getProductById } from '../../utils/firebase';
+import { useFavoritesContext } from '../../contexts/FavoritesContext';
+import { getProductById, auth } from '../../utils/firebase';
 import { toTitleCase } from '../../utils/stringUtils';
 
 import './ProductDetails.scss';
@@ -14,6 +16,8 @@ import './ProductDetails.scss';
 const ProductDetails = () => {
   const { id } = useParams();
   const { addItemToBag } = useBagContext();
+  const { favoriteItems, addItemToFavorites, removeItemFromFavorites } =
+    useFavoritesContext();
   const [product, setProduct] = useState({});
 
   useEffect(() => {
@@ -24,6 +28,26 @@ const ProductDetails = () => {
   }, [id]);
 
   const handleAddToBag = () => addItemToBag(product);
+  const handleAddToFavorites = () => {
+    const user = auth.currentUser;
+    if (!user) {
+      return alert(
+        'You need to be logged in in order to add items to your favorites.'
+      );
+    }
+    addItemToFavorites(product);
+  };
+  const handleRemoveFromFavorites = () => {
+    const user = auth.currentUser;
+    if (!user) {
+      return alert(
+        'You need to be logged in in order to remove items from your favorites.'
+      );
+    }
+    removeItemFromFavorites(product);
+  };
+
+  const itemAlreadyInFavorites = favoriteItems.find((i) => i._id === product._id);
 
   return (
     <div className='product-container'>
@@ -36,8 +60,27 @@ const ProductDetails = () => {
       </div>
       <div className='product-info-container'>
         <div className='product-info'>
-          <div className='title'>
-            <h2>{product.name}</h2>
+          <div className='title-block'>
+            <span className='title'>
+              <h2>{product.name}</h2>
+            </span>
+            <span className='add-to-favorites'>
+              {itemAlreadyInFavorites ? (
+                <span
+                  className='add-to-favorites active'
+                  onClick={handleRemoveFromFavorites}
+                >
+                  <HeartIcon className='heart-icon' />
+                </span>
+              ) : (
+                <span
+                  className='add-to-favorites'
+                  onClick={handleAddToFavorites}
+                >
+                  <HeartIcon className='heart-icon' />
+                </span>
+              )}
+            </span>
           </div>
           <div className='info-block'>
             <span className='block-title'>Category:</span>
