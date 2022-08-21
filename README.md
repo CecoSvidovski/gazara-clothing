@@ -1,70 +1,56 @@
-# Getting Started with Create React App
+# Gazara Clothing - SoftUni ReactJS Project Defence
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## How to start the project
 
-## Available Scripts
+In the project directory, run:
 
-In the project directory, you can run:
+### `npm install` or `npm i`
+
+Installs the project dependencies.
 
 ### `npm start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Description
 
-### `npm test`
+A simple e-commerce web application built on React. 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The application lets you browse through a variety of clothing products. You can also:
 
-### `npm run build`
+### - Authenticate
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Sign in with/create your own account or sign up/in with a Google account. 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### - Filter catalog items
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Filter the products in the shop catalog based on gender, category and color criterias.
 
-### `npm run eject`
+### - Manage items in shopping bag
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- Add products to your shopping bag, increase/decrease the quantity of the products in your shopping bag, remove them or simply view them.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### - Manage items in favorites
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Add or remove products from your favorite products' list or view them.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Used libraries
 
-## Learn More
+Here is a list of all the libraries used in this project
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### `react-router-dom`
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- For routing and managing the state of paths and path query parameters.
 
-### Code Splitting
+### `firebase`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- For authentication and storing/managing data in the database
 
-### Analyzing the Bundle Size
+### `sass`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- For styling purposes.
 
-### Making a Progressive Web App
+### `react-toastify`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- To notify the user for certain events or alert them if a validation error occurs.
