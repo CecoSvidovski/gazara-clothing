@@ -2,6 +2,10 @@
 
 **A project defence for SoftUni's ReactJS course**
 
+For the project demo click [here](https://gazara-clothing.vercel.app/).
+
+> Note: The project uses both `sass` and `styled-components` for demonstration purposes only. I completely acknowledge that in a real environment such practices are not recommended.
+
 ## Description
 
 A simple e-commerce web application built on React. 
@@ -36,7 +40,7 @@ Here is a list of all the libraries used in this project
 
 - For authentication and storing/managing data in the database
 
-### `sass`
+### `sass` and `styled-components`
 
 - For styling purposes.
 
