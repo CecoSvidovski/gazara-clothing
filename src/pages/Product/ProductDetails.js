@@ -51,23 +51,21 @@ const ProductDetails = () => {
             <span className='title'>
               <h2>{product.name}</h2>
             </span>
-            <span className='add-to-favorites'>
-              {itemAlreadyInFavorites ? (
-                <span
-                  className='add-to-favorites active'
-                  onClick={handleRemoveFromFavorites}
-                >
-                  <HeartIcon className='heart-icon' />
-                </span>
-              ) : (
-                <span
-                  className='add-to-favorites'
-                  onClick={handleAddToFavorites}
-                >
-                  <HeartIcon className='heart-icon' />
-                </span>
-              )}
-            </span>
+            {itemAlreadyInFavorites ? (
+              <span
+                className='add-to-favorites active'
+                onClick={handleRemoveFromFavorites}
+              >
+                <HeartIcon className='heart-icon' />
+              </span>
+            ) : (
+              <span
+                className='add-to-favorites'
+                onClick={handleAddToFavorites}
+              >
+                <HeartIcon className='heart-icon' />
+              </span>
+            )}
           </div>
           <div className='info-block'>
             <span className='block-title'>Category:</span>

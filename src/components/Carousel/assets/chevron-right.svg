@@ -1,0 +1,19 @@
+<svg 
+  width="24px" 
+  height="24px" 
+  viewBox="0 0 24 24" 
+  role="img" 
+  xmlns="http://www.w3.org/2000/svg" 
+  aria-labelledby="chevronRightIconTitle" 
+  stroke="currentColor" 
+  stroke-width="1" 
+  stroke-linecap="square" 
+  stroke-linejoin="miter" 
+  fill="none" 
+  color="currentColor"
+>
+  <title id="chevronRightIconTitle">
+    Next
+  </title>
+  <polyline points="10 6 16 12 10 18 10 18"/>
+</svg>
