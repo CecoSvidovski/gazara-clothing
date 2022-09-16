@@ -1,4 +1,4 @@
-import './Button.scss';
+import { StyledButton } from './styled';
 
 const BUTTON_TYPE_CLASSES = {
   default: '',
@@ -13,10 +13,10 @@ const Button = ({ children, buttonType = 'default', ...props }) => {
   const className = `button${BUTTON_TYPE_CLASSES[buttonType]}`;
 
   return (
-    <button className={className} {...props}>
+    <StyledButton className={className} {...props}>
       <span />
       {children}
-    </button>
+    </StyledButton>
   );
 };
 
