@@ -4,7 +4,7 @@ import { useBagContext } from '../../contexts/BagContext';
 import { useFavoritesContext } from '../../contexts/FavoritesContext';
 
 import NavLink from '../NavLink';
-import Button from '../Button/Button';
+import Button from '../Button';
 import BagNavItem from '../BagNavItem';
 
 import {

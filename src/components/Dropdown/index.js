@@ -1,4 +1,4 @@
-import './Dropdown.scss';
+import './styles.scss';
 
 const Dropdown = ({ children, width, ...props }) => {
   const style = width && { width: width };

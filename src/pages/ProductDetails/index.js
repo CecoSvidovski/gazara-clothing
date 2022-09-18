@@ -12,7 +12,7 @@ import Carousel from '../../components/Carousel';
 import ImageSkeleton from '../../components/ImageSkeleton';
 import { ReactComponent as HeartIcon } from './assets/heart.svg';
 
-import './ProductDetails.scss';
+import './styles.scss';
 
 const ProductDetails = () => {
   const { id } = useParams();

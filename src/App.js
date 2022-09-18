@@ -5,8 +5,8 @@ import Home from './pages/Home';
 import Authentication from './pages/Auth';
 import Shop from './pages/Shop';
 import Bag from './pages/Bag';
-import ProductDetails from './pages/Product/ProductDetails';
-import Favorites from './pages/Favorites/Favorites';
+import ProductDetails from './pages/ProductDetails';
+import Favorites from './pages/Favorites';
 
 const App = () => {
   return (

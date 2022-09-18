@@ -6,8 +6,8 @@ import { kebabToCamelCase } from '../../utils/stringUtils';
 import { toast } from 'react-toastify';
 
 import FormInput from '../FormInput';
-import Button from '../Button/Button';
-import './SignUpForm.scss';
+import Button from '../Button';
+import './styles.scss';
 
 const initialFormData = {
   firstName: '',
